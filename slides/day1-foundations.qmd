@@ -1,0 +1,570 @@
+---
+title: "Data Analysis with R and Claude Code"
+subtitle: "Day 1: Foundations — Why Data Analysis & First Steps in R"
+author: "Fabio Giglietto"
+institute: "University of Urbino"
+date: "February 9, 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    preview-links: auto
+    logo: ""
+    footer: "PhD in Humanities — Scienze della Comunicazione e Cultura Digitale"
+    highlight-style: github
+    code-line-numbers: false
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Welcome! {background-color="#2c3e50"}
+
+## About This Course
+
+::: {.incremental}
+- **5 days** (Mon-Fri, 2 hours each)
+- **No prior programming experience required**
+- Learn by doing with a real dataset
+- AI-assisted learning with Claude Code
+:::
+
+. . .
+
+**Goal:** Go from zero to analyzing social media data
+
+## About Me
+
+**Fabio Giglietto**
+
+- University of Urbino
+- Research interests: social media, misinformation, computational methods
+
+. . .
+
+**About You?**
+
+- Your name
+- Your research area
+- What do you hope to learn?
+
+## This Week's Journey
+
+| Day | Topic |
+|-----|-------|
+| **1** | **Foundations** — First steps in R |
+| 2 | Working with Data — Import & explore |
+| 3 | Data Wrangling — Transform & summarize |
+| 4 | Visualization — Tell stories with data |
+| 5 | Text Analysis — Capstone project |
+
+## Our Dataset: TikTok Videos
+
+We'll analyze **9,373 TikTok videos** about Fabrizio Corona
+
+. . .
+
+| Attribute | Value |
+|-----------|-------|
+| Videos | 9,373 |
+| Unique creators | 4,964 |
+| Total views | 338+ million |
+| Period | January 2026 |
+| Region | Italy |
+
+## Questions We Can Answer
+
+::: {.incremental}
+- Which videos went viral?
+- What makes content engaging?
+- When do creators post?
+- What hashtags are most popular?
+- Who are the top creators?
+:::
+
+# Why Data Analysis? {background-color="#2c3e50"}
+
+## The Media Research Landscape
+
+::: {.columns}
+::: {.column width="50%"}
+**Traditional Methods**
+
+- Interviews
+- Focus groups
+- Content analysis (manual)
+- Small samples
+:::
+
+::: {.column width="50%"}
+**Computational Methods**
+
+- Large-scale data collection
+- Automated analysis
+- Pattern detection
+- Reproducible research
+:::
+:::
+
+## Mixed Methods
+
+Data analysis **complements** qualitative research
+
+. . .
+
+- **Quantitative:** What patterns exist?
+- **Qualitative:** Why do they exist?
+
+. . .
+
+Best insights often come from combining both
+
+## Questions Data Can Help Answer
+
+::: {.incremental}
+- How do stories spread on social media?
+- What content gets engagement?
+- How do audiences respond to events?
+- What are the patterns in large text collections?
+- How do platforms shape communication?
+:::
+
+# RStudio Orientation {background-color="#2c3e50"}
+
+## The RStudio Interface
+
+:::: {.columns}
+::: {.column width="50%"}
+**Top Left: Source**
+
+- Write and save code
+- Your R scripts live here
+:::
+
+::: {.column width="50%"}
+**Top Right: Environment**
+
+- Variables you've created
+- Data you've loaded
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+**Bottom Left: Console**
+
+- Run code interactively
+- See output here
+:::
+
+::: {.column width="50%"}
+**Bottom Right: Files/Plots/Help**
+
+- Browse files
+- View visualizations
+- Read documentation
+:::
+::::
+
+## Writing vs Running Code
+
+**Source pane:** Write code to save and reuse
+
+**Console:** Run code immediately, see results
+
+. . .
+
+**Key shortcut:** `Ctrl+Enter` (or `Cmd+Enter` on Mac)
+
+Runs the current line or selection
+
+## Try It: Your First Code
+
+Open RStudio and type in the Console:
+
+```{r}
+2 + 2
+```
+
+. . .
+
+Press Enter. You should see:
+
+```
+[1] 4
+```
+
+# R Basics {background-color="#2c3e50"}
+
+## R as a Calculator
+
+```{r}
+2 + 2        # Addition
+10 - 3       # Subtraction
+5 * 4        # Multiplication
+20 / 5       # Division
+3^2          # Exponentiation (3 squared)
+sqrt(16)     # Square root
+```
+
+## Try It Yourself
+
+Calculate:
+
+::: {.incremental}
+1. 15 + 27
+2. 100 divided by 8
+3. 5 to the power of 3
+4. Square root of 144
+:::
+
+## Variables: Storing Values
+
+Use `<-` to assign values to variables
+
+```{r}
+x <- 10
+y <- 5
+```
+
+. . .
+
+Now use them:
+
+```{r}
+x + y
+x * y
+```
+
+## Naming Variables
+
+```{r}
+my_name <- "Fabio"        # Text (character)
+my_age <- 30              # Number (numeric)
+is_student <- TRUE        # Logical (TRUE/FALSE)
+```
+
+. . .
+
+View a variable by typing its name:
+
+```{r}
+my_name
+```
+
+```
+[1] "Fabio"
+```
+
+## Our Course Variables
+
+```{r}
+platform <- "TikTok"
+subject <- "Fabrizio Corona"
+n_videos <- 9373
+total_views <- 338738386
+```
+
+. . .
+
+What's the average views per video?
+
+```{r}
+total_views / n_videos
+```
+
+## Data Types
+
+| Type | Example | Description |
+|------|---------|-------------|
+| `numeric` | `42`, `3.14` | Numbers |
+| `character` | `"hello"` | Text (in quotes) |
+| `logical` | `TRUE`, `FALSE` | Boolean values |
+
+## Vectors: Collections of Values
+
+Use `c()` to **combine** values:
+
+```{r}
+views <- c(1000, 5000, 25000, 100000, 50000)
+views
+```
+
+```
+[1]   1000   5000  25000 100000  50000
+```
+
+## Vectors of Different Types
+
+```{r}
+# Numeric
+views <- c(1000, 5000, 25000, 100000, 50000)
+
+# Character
+platforms <- c("TikTok", "Instagram", "YouTube")
+
+# Logical
+is_viral <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+```
+
+## Accessing Vector Elements
+
+Use square brackets `[ ]`:
+
+```{r}
+views <- c(1000, 5000, 25000, 100000, 50000)
+
+views[1]       # First element
+views[3]       # Third element
+views[c(1,3)]  # First AND third
+```
+
+```
+[1] 1000
+[1] 25000
+[1]  1000 25000
+```
+
+## Useful Vector Functions
+
+```{r}
+views <- c(1000, 5000, 25000, 100000, 50000)
+
+length(views)   # How many elements?
+sum(views)      # Total
+mean(views)     # Average
+max(views)      # Maximum
+min(views)      # Minimum
+```
+
+## Sorting
+
+```{r}
+views <- c(1000, 5000, 25000, 100000, 50000)
+
+sort(views)                      # Ascending
+sort(views, decreasing = TRUE)   # Descending
+```
+
+```
+[1]   1000   5000  25000  50000 100000
+[1] 100000  50000  25000   5000   1000
+```
+
+## Try It: Vector Exercise
+
+1. Create a vector called `likes` with values: 100, 500, 2000, 800, 350
+
+. . .
+
+```{r}
+likes <- c(100, 500, 2000, 800, 350)
+```
+
+. . .
+
+2. Calculate the mean and sum
+
+. . .
+
+```{r}
+mean(likes)
+sum(likes)
+```
+
+## Logical Operations
+
+Comparisons return `TRUE` or `FALSE`:
+
+```{r}
+5 > 3    # Greater than
+5 < 3    # Less than
+5 == 5   # Equal to (two equals signs!)
+5 != 3   # Not equal to
+```
+
+## Applying Comparisons to Vectors
+
+```{r}
+views <- c(1000, 5000, 25000, 100000, 50000)
+
+views > 10000   # Which are greater than 10000?
+```
+
+```
+[1] FALSE FALSE  TRUE  TRUE  TRUE
+```
+
+. . .
+
+```{r}
+sum(views > 10000)   # How many?
+```
+
+```
+[1] 3
+```
+
+## Getting Help
+
+Use `?` before any function:
+
+```{r}
+?mean
+?sum
+?sort
+```
+
+. . .
+
+The Help pane shows:
+
+- Description
+- Usage
+- Arguments
+- Examples
+
+# Introduction to Claude Code {background-color="#2c3e50"}
+
+## What is Claude Code?
+
+An AI assistant that helps you:
+
+::: {.incremental}
+- **Explain** code you don't understand
+- **Write** code for specific tasks
+- **Debug** errors
+- **Learn** programming concepts
+:::
+
+## Starting Claude Code in RStudio
+
+1. Click the **Terminal** tab (next to Console)
+2. Type `claude` and press Enter
+
+. . .
+
+Claude Code can see your files and help with your project!
+
+## Example: Explain Code
+
+Ask Claude Code:
+
+> "What does this code do?"
+>
+> `views <- c(1000, 5000, 25000)`
+
+. . .
+
+Claude will explain:
+
+- `c()` combines values into a vector
+- `<-` assigns the vector to a variable called `views`
+
+## Example: Write Code
+
+Ask Claude Code:
+
+> "Write R code to calculate the average of these numbers: 10, 20, 30, 40, 50"
+
+. . .
+
+Claude will provide:
+
+```{r}
+numbers <- c(10, 20, 30, 40, 50)
+mean(numbers)
+```
+
+## Example: Debug Errors
+
+Ask Claude Code:
+
+> "I got this error: object 'Views' not found"
+>
+> "My code is: mean(Views)"
+
+. . .
+
+Claude will explain: R is case-sensitive!
+
+You probably defined `views` (lowercase).
+
+## Best Practices with AI
+
+::: {.incremental}
+1. **Try first** — Attempt problems yourself
+2. **Ask for explanations** — Not just code
+3. **Understand** — Make sure you can explain it
+4. **Practice** — Try similar problems without AI
+:::
+
+. . .
+
+**Learn WITH AI, not FROM AI**
+
+# Exercises {background-color="#2c3e50"}
+
+## Exercise 1
+
+Create variables for:
+
+- Your name (as text)
+- Your birth year (as a number)
+- Whether you like coffee (TRUE or FALSE)
+
+## Exercise 2
+
+Create a vector called `likes` with values: 100, 500, 2000, 800, 350
+
+Then:
+
+1. Calculate the mean
+2. Calculate the sum
+3. Find the maximum value
+4. How many values are above 500?
+
+## Exercise 3
+
+Use Claude Code!
+
+Ask it: "What is the difference between `<-` and `=` in R?"
+
+# Homework {background-color="#2c3e50"}
+
+## Before Day 2
+
+**1. Install the tidyverse package**
+
+```{r}
+install.packages("tidyverse")
+```
+
+(This may take a few minutes)
+
+. . .
+
+**2. Practice in RStudio**
+
+Create a new script with:
+
+- At least 3 variables
+- A numeric vector with 5+ values
+- Calculations using vector functions
+
+## Ask Claude Code
+
+> "What is the tidyverse and why is it useful for data analysis?"
+
+. . .
+
+Read the response and come ready to discuss tomorrow!
+
+# See You Tomorrow! {background-color="#2c3e50"}
+
+**Day 2: Working with Data**
+
+- Import our TikTok dataset
+- Explore and understand the data
+- Select and filter observations
