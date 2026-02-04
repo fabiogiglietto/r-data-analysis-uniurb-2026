@@ -6,7 +6,7 @@ institute: "University of Urbino"
 date: "February 11, 2026"
 format:
   revealjs:
-    theme: [default, custom.scss]
+    theme: [default, uniurb.scss]
     slide-number: true
     preview-links: auto
     logo: ""

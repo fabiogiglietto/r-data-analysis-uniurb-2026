@@ -13,9 +13,10 @@ This is a 10-hour PhD-level R data analysis course for the University of Urbino 
 - `scripts/` — Daily lesson scripts (day1 through day5), each building on the previous
 - `scripts/solutions/` — Complete answer keys for exercises
 - `data/` — CSV dataset with TikTok video metadata (see `data/README.md` for data dictionary)
-- `resources/` — Setup instructions, Claude Code tips, Italian stopwords for text analysis
+- `resources/` — Setup instructions, Claude Code tips, Italian stopwords, Uniurb ggplot2 theme
 - `output/` — Directory for student-generated visualizations (gitignored)
-- `slides/` — Course slide decks (PDF)
+- `slides/` — Course slide decks (Quarto revealjs, HTML output)
+- `_uniurb.brandid/` — University of Urbino brand identity assets and guidelines
 
 ## R Package Stack
 
@@ -48,6 +49,50 @@ corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
 
 Key columns: `video_id`, `create_datetime`, `create_date`, `description`, `hashtags`, `duration`, `view_count`, `like_count`, `comment_count`, `share_count`, `author_name`
 
+## Uniurb Brand Identity
+
+All visual materials must follow the University of Urbino brand guidelines (see `_uniurb.brandid/`).
+
+### Color Palette
+
+| Color | Hex | Use |
+|-------|-----|-----|
+| Blu Scuro | `#294973` | Primary brand color |
+| Blu Medio | `#49668C` | Secondary text |
+| Blu Chiaro | `#7289A6` | Accents |
+| Blu Pallido | `#A4B0BF` | Borders, grid lines |
+| Grigio Chiaro | `#F2F2F2` | Backgrounds |
+| Oro Primario | `#FAC73C` | Highlights, accents |
+
+### Typography
+
+- **Headings:** Montserrat (Google Fonts)
+- **Body text:** Atkinson Hyperlegible (accessibility-focused)
+- **Fallback:** Arial, Helvetica
+
+### Quarto Slides
+
+Slides use `uniurb.scss` theme with revealjs format:
+```yaml
+format:
+  revealjs:
+    theme: [default, uniurb.scss]
+```
+
+Section headers use dark blue background: `{background-color="#294973"}`
+
+### ggplot2 Visualizations
+
+Use the Uniurb theme and color scales from `resources/uniurb_theme.R`:
+```r
+source("resources/uniurb_theme.R")
+
+ggplot(data, aes(x, y)) +
+  geom_point(color = uniurb_colors$blue_dark) +
+  scale_fill_uniurb(type = "mixed") +
+  theme_uniurb()
+```
+
 ## Context for AI Assistance
 
 This is an educational repository. When helping:
@@ -55,3 +100,4 @@ This is an educational repository. When helping:
 - The audience are communication and humanities researchers
 - Italian language context applies to text analysis (stopwords provided in `resources/`)
 - Focus on understanding over just providing solutions
+- Follow Uniurb brand identity for any visual outputs
