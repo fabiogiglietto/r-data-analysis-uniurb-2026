@@ -32,13 +32,13 @@ This intensive one-week course introduces PhD students to data analysis using R 
 
 ## Schedule
 
-| Day | Date | Topic | Materials |
-|:---:|------|-------|-----------|
-| 1 | Mon, Feb 9 | **Foundations** — Why Data Analysis & First Steps in R | [Script](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day1-basics.R) |
-| 2 | Tue, Feb 10 | **Working with Data** — Import, Explore, Transform | [Script](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day2-import-explore.R) · [Solutions](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day2-solutions.R) |
-| 3 | Wed, Feb 11 | **Data Wrangling** — Transforming Data for Analysis | [Script](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day3-wrangling.R) · [Solutions](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day3-solutions.R) |
-| 4 | Thu, Feb 12 | **Visualization** — Telling Stories with Data | [Script](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day4-visualization.R) · [Solutions](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day4-solutions.R) |
-| 5 | Fri, Feb 13 | **Text Analysis & Capstone** — Putting It All Together | [Script](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day5-text-analysis.R) · [Solutions](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day5-solutions.R) |
+| Day | Date | Topic | Slides | Materials |
+|:---:|------|-------|:------:|-----------|
+| 1 | Mon, Feb 9 | **Foundations** — Why Data Analysis & First Steps in R | [Slides](slides/day1-foundations.html) | [Script](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day1-basics.R) |
+| 2 | Tue, Feb 10 | **Working with Data** — Import, Explore, Transform | [Slides](slides/day2-working-with-data.html) | [Script](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day2-import-explore.R) · [Solutions](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day2-solutions.R) |
+| 3 | Wed, Feb 11 | **Data Wrangling** — Transforming Data for Analysis | [Slides](slides/day3-data-wrangling.html) | [Script](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day3-wrangling.R) · [Solutions](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day3-solutions.R) |
+| 4 | Thu, Feb 12 | **Visualization** — Telling Stories with Data | [Slides](slides/day4-visualization.html) | [Script](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day4-visualization.R) · [Solutions](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day4-solutions.R) |
+| 5 | Fri, Feb 13 | **Text Analysis & Capstone** — Putting It All Together | [Slides](slides/day5-text-analysis.html) | [Script](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/day5-text-analysis.R) · [Solutions](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/scripts/solutions/day5-solutions.R) |
 
 ---
 
