@@ -43,3 +43,6 @@ __pycache__/
 
 # Log files
 *.log
+
+# Brand identity source files (internal use only)
+_uniurb.brandid/
