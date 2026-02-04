@@ -1,0 +1,579 @@
+---
+title: "Data Analysis with R and Claude Code"
+subtitle: "Day 5: Putting It All Together — Text Analysis & Capstone"
+author: "Fabio Giglietto"
+institute: "University of Urbino"
+date: "February 13, 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    preview-links: auto
+    logo: ""
+    footer: "PhD in Humanities — Scienze della Comunicazione e Cultura Digitale"
+    highlight-style: github
+    code-line-numbers: false
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Welcome to Day 5! {background-color="#2c3e50"}
+
+## This Week's Journey
+
+| Day | Topic | ✓ |
+|-----|-------|---|
+| 1 | Foundations — R basics, vectors, functions | ✓ |
+| 2 | Import & Explore — read_csv, select, filter | ✓ |
+| 3 | Data Wrangling — mutate, group_by, summarize | ✓ |
+| 4 | Visualization — ggplot2, charts, customization | ✓ |
+| **5** | **Text Analysis & Capstone** | **Today!** |
+
+## Today's Goals
+
+::: {.incremental}
+1. Analyze hashtags from our TikTok data
+2. Perform word frequency analysis
+3. Combine text and engagement analysis
+4. Learn reproducible workflow practices
+5. Complete a capstone project
+:::
+
+## Setup
+
+```{r}
+library(tidyverse)
+library(tidytext)   # For text analysis
+library(scales)
+
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+
+# Add our calculated variables
+corona <- corona |>
+  mutate(
+    engagement_total = like_count + comment_count + share_count,
+    engagement_rate = engagement_total / view_count,
+    duration_category = factor(
+      case_when(
+        duration < 30 ~ "short",
+        duration >= 30 & duration <= 60 ~ "medium",
+        duration > 60 ~ "long"
+      ),
+      levels = c("short", "medium", "long")
+    )
+  )
+```
+
+# Hashtag Analysis {background-color="#2c3e50"}
+
+## The Hashtags Column
+
+```{r}
+corona |>
+  select(video_id, hashtags) |>
+  head(5)
+```
+
+```
+# A tibble: 5 × 2
+  video_id          hashtags
+  <chr>             <chr>
+1 7449234567891234  fabriziocorona, gossip, italia
+2 7449876543219876  corona, news, breakingnews
+3 7450123456789012  fabriziocorona, foryou, viral
+...
+```
+
+Comma-separated values — we need to split them!
+
+## Step 1: Filter Videos with Hashtags
+
+```{r}
+corona_hashtags <- corona |>
+  filter(!is.na(hashtags) & hashtags != "")
+
+nrow(corona_hashtags)
+```
+
+## Step 2: Separate into Individual Rows
+
+```{r}
+hashtag_counts <- corona_hashtags |>
+  separate_rows(hashtags, sep = ",\\s*") |>
+  mutate(hashtags = str_to_lower(str_trim(hashtags))) |>
+  filter(hashtags != "") |>
+  count(hashtags, sort = TRUE)
+```
+
+## separate_rows() Explained
+
+**Before:**
+
+| video_id | hashtags |
+|----------|----------|
+| 123 | corona, news, italia |
+
+**After:**
+
+| video_id | hashtags |
+|----------|----------|
+| 123 | corona |
+| 123 | news |
+| 123 | italia |
+
+## View Top Hashtags
+
+```{r}
+head(hashtag_counts, 15)
+```
+
+```
+# A tibble: 15 × 2
+   hashtags             n
+   <chr>            <int>
+ 1 fabriziocorona    4521
+ 2 corona            2134
+ 3 foryou            1876
+ 4 viral             1543
+ 5 italia            1234
+...
+```
+
+## Visualize Top Hashtags
+
+```{r}
+hashtag_counts |>
+  filter(hashtags != "fabriziocorona") |>
+  head(15) |>
+  ggplot(aes(x = reorder(hashtags, n), y = n)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(
+    title = "Most Common Hashtags in Corona Videos",
+    subtitle = "Excluding #fabriziocorona",
+    x = NULL,
+    y = "Number of Videos"
+  ) +
+  theme_minimal()
+```
+
+## Save Your Plot
+
+```{r}
+ggsave("output/top_hashtags.png", width = 10, height = 6, dpi = 300)
+```
+
+# Word Frequency Analysis {background-color="#2c3e50"}
+
+## The tidytext Package
+
+Provides tools for text mining:
+
+- **`unnest_tokens()`** — Split text into words
+- **`anti_join()`** — Remove stopwords
+- Works seamlessly with tidyverse
+
+## Loading Stopwords
+
+```{r}
+italian_stopwords <- read_csv("resources/italian-stopwords.csv")
+
+head(italian_stopwords, 10)
+```
+
+```
+# A tibble: 10 × 1
+   word
+   <chr>
+ 1 di
+ 2 che
+ 3 e
+ 4 il
+ 5 la
+...
+```
+
+## Step 1: Tokenize Descriptions
+
+```{r}
+words <- corona |>
+  select(video_id, description) |>
+  filter(!is.na(description)) |>
+  unnest_tokens(word, description)
+
+nrow(words)
+```
+
+## unnest_tokens() Explained
+
+**Before:**
+
+| video_id | description |
+|----------|-------------|
+| 123 | Corona news today! |
+
+**After:**
+
+| video_id | word |
+|----------|------|
+| 123 | corona |
+| 123 | news |
+| 123 | today |
+
+## Step 2: Remove Stopwords
+
+```{r}
+words_clean <- words |>
+  anti_join(italian_stopwords, by = "word")
+
+nrow(words_clean)
+```
+
+. . .
+
+`anti_join()` keeps only rows that **don't** match
+
+## Step 3: Additional Cleaning
+
+```{r}
+words_clean <- words_clean |>
+  filter(!str_detect(word, "^[0-9]+$")) |>    # Remove numbers
+  filter(nchar(word) > 2) |>                   # Remove short words
+  filter(!word %in% c("https", "http", "www", "com", "tiktok"))
+```
+
+## Step 4: Count Word Frequencies
+
+```{r}
+word_counts <- words_clean |>
+  count(word, sort = TRUE)
+
+head(word_counts, 20)
+```
+
+## Step 5: Visualize
+
+```{r}
+word_counts |>
+  head(20) |>
+  ggplot(aes(x = reorder(word, n), y = n)) +
+  geom_col(fill = "coral") +
+  coord_flip() +
+  labs(
+    title = "Most Frequent Words in Video Descriptions",
+    subtitle = "After removing Italian stopwords",
+    x = NULL,
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+## Text Analysis Workflow
+
+```{r}
+data |>
+  unnest_tokens(word, text_column) |>   # Tokenize
+  anti_join(stopwords) |>                # Remove stopwords
+  filter(...) |>                         # Clean
+  count(word, sort = TRUE) |>            # Count
+  ggplot(...) + geom_col()               # Visualize
+```
+
+# Text + Engagement {background-color="#2c3e50"}
+
+## Research Question
+
+**Do videos with certain hashtags perform better?**
+
+## Calculate Hashtag Performance
+
+```{r}
+hashtag_performance <- corona_hashtags |>
+  separate_rows(hashtags, sep = ",\\s*") |>
+  mutate(hashtags = str_to_lower(str_trim(hashtags))) |>
+  filter(hashtags != "" & hashtags != "fabriziocorona") |>
+  group_by(hashtags) |>
+  summarize(
+    n_videos = n(),
+    avg_views = mean(view_count),
+    total_views = sum(view_count),
+    avg_engagement = mean(engagement_rate, na.rm = TRUE)
+  ) |>
+  filter(n_videos >= 10)
+```
+
+## Top Hashtags by Average Views
+
+```{r}
+hashtag_performance |>
+  arrange(desc(avg_views)) |>
+  head(15)
+```
+
+## Visualize Hashtag Performance
+
+```{r}
+hashtag_performance |>
+  filter(n_videos >= 20) |>
+  arrange(desc(avg_views)) |>
+  head(15) |>
+  ggplot(aes(x = reorder(hashtags, avg_views), y = avg_views)) +
+  geom_col(fill = "purple") +
+  coord_flip() +
+  scale_y_continuous(labels = label_comma()) +
+  labs(
+    title = "Top Hashtags by Average Views",
+    subtitle = "Hashtags used in at least 20 videos",
+    x = NULL,
+    y = "Average Views"
+  ) +
+  theme_minimal()
+```
+
+# Reproducible Workflows {background-color="#2c3e50"}
+
+## Project Organization
+
+```
+my_analysis/
+├── data/           # Raw data (never modify!)
+├── scripts/        # R code
+├── output/         # Generated figures and tables
+└── README.md       # Description of the project
+```
+
+## Script Structure Template
+
+```{r}
+# =============================================================================
+# Title: My Analysis
+# Author: Your Name
+# Date: 2026-02-13
+# Description: Brief description
+# =============================================================================
+
+# SETUP -----------------------------------------------------------------------
+library(tidyverse)
+
+# IMPORT DATA -----------------------------------------------------------------
+data <- read_csv("data/mydata.csv")
+
+# CLEAN DATA ------------------------------------------------------------------
+data_clean <- data |>
+  filter(...) |>
+  mutate(...)
+
+# ANALYSIS --------------------------------------------------------------------
+# Your analysis code
+
+# VISUALIZATION ---------------------------------------------------------------
+# Your plots
+
+# EXPORT ----------------------------------------------------------------------
+ggsave("output/my_plot.png", width = 10, height = 6)
+```
+
+## Best Practices
+
+::: {.incremental}
+1. **Never modify raw data** — Keep originals intact
+2. **Comment your code** — Explain *why*, not *what*
+3. **Use meaningful names** — `daily_stats` not `ds`
+4. **Save your outputs** — Figures, tables, results
+5. **Document your process** — Future you will thank you
+:::
+
+# Capstone Project {background-color="#2c3e50"}
+
+## Choose Your Research Question
+
+You have **45 minutes** to complete one analysis:
+
+- **Option A:** Engagement Analysis
+- **Option B:** Temporal Analysis
+- **Option C:** Creator Analysis
+
+## Option A: Engagement Analysis
+
+**Research question:** What factors are associated with higher engagement?
+
+**Tasks:**
+
+1. Calculate an engagement metric
+2. Compare engagement across duration categories
+3. Identify top 10 most engaging videos
+4. Create 2+ visualizations
+5. Write 3-5 sentence summary
+
+## Option B: Temporal Analysis
+
+**Research question:** How did activity change throughout January 2026?
+
+**Tasks:**
+
+1. Calculate daily/weekly statistics
+2. Identify spikes or unusual patterns
+3. Compare first half vs. second half of month
+4. Create 2+ visualizations (including time series)
+5. Write 3-5 sentence summary
+
+## Option C: Creator Analysis
+
+**Research question:** Who are the key creators driving the conversation?
+
+**Tasks:**
+
+1. Identify most prolific creators (by video count)
+2. Identify most viewed creators (by total views)
+3. Compare the two lists
+4. Create 2+ visualizations
+5. Write 3-5 sentence summary
+
+## Summary Template
+
+```
+Research Question:
+[Your research question]
+
+Key Findings:
+1. [Finding 1]
+2. [Finding 2]
+3. [Finding 3]
+
+Conclusion:
+[2-3 sentences summarizing what you learned]
+
+Limitations:
+[What couldn't you answer? What would you need?]
+```
+
+## Tips for Your Capstone
+
+::: {.incremental}
+- Start simple, then add complexity
+- Use Claude Code when you get stuck
+- Save your visualizations as you go
+- Take notes on what you discover
+- Don't worry about perfection!
+:::
+
+# What You've Learned {background-color="#2c3e50"}
+
+## The Complete Toolkit
+
+| Day | Skills |
+|-----|--------|
+| 1 | R basics, vectors, functions, getting help |
+| 2 | `read_csv()`, `select()`, `filter()`, `|>` |
+| 3 | `mutate()`, `case_when()`, `group_by()`, `summarize()` |
+| 4 | `ggplot2`: histograms, bars, lines, scatter, box |
+| 5 | Text analysis, reproducible workflows |
+
+## The Data Analysis Workflow
+
+```
+Import → Clean → Transform → Visualize → Communicate
+```
+
+. . .
+
+```{r}
+read_csv() → filter() → mutate() → ggplot() → ggsave()
+            select()   group_by()
+                       summarize()
+```
+
+## You Can Now...
+
+::: {.incremental}
+- Import and explore datasets
+- Clean and transform data
+- Calculate summary statistics
+- Create publication-ready visualizations
+- Analyze text data
+- Use AI to help you learn
+:::
+
+# Resources for Continuing {background-color="#2c3e50"}
+
+## Free Books Online
+
+**R for Data Science (2nd edition)**
+
+[r4ds.hadley.nz](https://r4ds.hadley.nz/)
+
+- The essential tidyverse reference
+- Covers everything we learned and more
+
+. . .
+
+**Text Mining with R**
+
+[tidytextmining.com](https://www.tidytextmining.com/)
+
+- Deep dive into text analysis
+- Sentiment analysis, topic modeling
+
+## Cheatsheets
+
+**Posit Cheatsheets**
+
+[posit.co/resources/cheatsheets](https://posit.co/resources/cheatsheets/)
+
+- dplyr, ggplot2, tidyr, readr
+- Print them out!
+
+## Practice
+
+**Posit Cloud Primers**
+
+[posit.cloud/learn/primers](https://posit.cloud/learn/primers)
+
+- Interactive tutorials
+- Practice in your browser
+
+## Keep Using Claude Code
+
+Ask it to:
+
+- Explain code you find online
+- Help debug errors
+- Suggest approaches to problems
+- Review your code
+
+. . .
+
+Remember: **Learn WITH AI, not FROM AI**
+
+# Thank You! {background-color="#2c3e50"}
+
+## Congratulations!
+
+You've completed **Data Analysis with R and Claude Code**
+
+. . .
+
+From zero to analyzing real social media data in one week!
+
+## Stay in Touch
+
+**Fabio Giglietto**
+
+- Email: [fabio.giglietto@uniurb.it](mailto:fabio.giglietto@uniurb.it)
+- Course materials: [GitHub Repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026)
+
+## Final Thoughts
+
+::: {.incremental}
+- Practice regularly — even 15 minutes helps
+- Start with questions, not techniques
+- Embrace errors — they're learning opportunities
+- Join the R community (Twitter/X: #rstats)
+- Your research questions + these tools = insights!
+:::
+
+# Good Luck! {background-color="#2c3e50"}
+
+**Keep exploring, keep learning, keep questioning.**
