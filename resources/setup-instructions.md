@@ -124,11 +124,31 @@ Claude Code is an AI assistant that helps you write and understand R code.
    ```
 3. Wait for installation to complete
 
-### Create an Anthropic Account
+### Configure the API Key
 
-1. Go to [https://www.anthropic.com/](https://www.anthropic.com/)
-2. Click **Sign Up** or **Get Started**
-3. Create an account with your email
+You will receive an **API key by email** from the instructor before the course starts. You do **not** need to create an Anthropic account or subscription.
+
+Once you receive your API key, configure it as an environment variable:
+
+**Windows (Command Prompt):**
+```cmd
+setx ANTHROPIC_API_KEY "your-api-key-here"
+```
+Then close and reopen Command Prompt.
+
+**Windows (PowerShell):**
+```powershell
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', 'your-api-key-here', 'User')
+```
+Then close and reopen PowerShell.
+
+**macOS/Linux:**
+
+Add this line to your shell configuration file (`~/.bashrc`, `~/.zshrc`, or `~/.bash_profile`):
+```bash
+export ANTHROPIC_API_KEY="your-api-key-here"
+```
+Then run `source ~/.bashrc` (or the appropriate file) or restart your terminal.
 
 ### Verify Claude Code Installation
 
@@ -137,7 +157,7 @@ In your terminal, type:
 claude
 ```
 
-You should see Claude Code start. Follow the prompts to authenticate with your Anthropic account.
+You should see Claude Code start. If the API key is configured correctly, you'll be ready to use it.
 
 ## 6. Download Course Materials
 
