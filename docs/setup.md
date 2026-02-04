@@ -140,31 +140,13 @@ Claude Code is an AI assistant that helps you write and understand R code.
    ```
 3. Wait for installation to complete
 
-### Configure the API Key
+### Activate Your Guest Pass
 
-You will receive an **API key by email** from the instructor before the course starts. You do **not** need to create an Anthropic account or subscription.
+You will receive a **guest pass by email** from the instructor. This gives you **one free week of Claude Code** — no subscription or payment required.
 
-Once you receive your API key, configure it as an environment variable:
-
-**Windows (Command Prompt):**
-```cmd
-setx ANTHROPIC_API_KEY "your-api-key-here"
-```
-Then close and reopen Command Prompt.
-
-**Windows (PowerShell):**
-```powershell
-[System.Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', 'your-api-key-here', 'User')
-```
-Then close and reopen PowerShell.
-
-**macOS/Linux:**
-
-Add this line to your shell configuration file (`~/.bashrc`, `~/.zshrc`, or `~/.bash_profile`):
-```bash
-export ANTHROPIC_API_KEY="your-api-key-here"
-```
-Then run `source ~/.bashrc` (or the appropriate file) or restart your terminal.
+1. Check your email for the guest pass invitation from Anthropic
+2. Click the link to activate your pass
+3. Follow the prompts to create an Anthropic account (if you don't have one)
 
 ### Verify Claude Code Installation
 
@@ -173,7 +155,7 @@ In your terminal, type:
 claude
 ```
 
-You should see Claude Code start. If the API key is configured correctly, you'll be ready to use it.
+You should see Claude Code start. Follow the prompts to sign in with your Anthropic account (the one you used to activate the guest pass).
 
 ---
 

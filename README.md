@@ -52,8 +52,8 @@ Download [RStudio Desktop](https://posit.co/download/rstudio-desktop/) (free ver
    ```bash
    npm install -g @anthropic-ai/claude-code
    ```
-3. **API Key:** You will receive an API key by email from the instructor (no subscription required)
-4. See [detailed setup instructions](resources/setup-instructions.md) for configuring the API key
+3. **Guest Pass:** You will receive a free one-week guest pass by email from the instructor
+4. See [detailed setup instructions](resources/setup-instructions.md) for activation
 
 ### 4. R Packages
 
