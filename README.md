@@ -68,7 +68,7 @@ install.packages(c("tidyverse", "tidytext", "scales"))
 ## Repository Contents
 
 ```
-├── slides/                 # Daily slide decks (PDF)
+├── slides/                 # Daily slide decks (Quarto/HTML)
 ├── data/                   # Dataset for exercises
 ├── scripts/                # R scripts for each day
 │   └── solutions/          # Exercise solutions
@@ -106,26 +106,26 @@ See the [data dictionary](data/README.md) for variable descriptions.
 ## Daily Materials
 
 ### Day 1: Foundations
-- [Slides](slides/day1-foundations.pdf)
+- [Slides](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/slides/day1-foundations.html) | [Source](slides/day1-foundations.qmd)
 - [Script](scripts/day1-basics.R)
 
 ### Day 2: Working with Data
-- [Slides](slides/day2-working-with-data.pdf)
+- [Slides](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/slides/day2-working-with-data.html) | [Source](slides/day2-working-with-data.qmd)
 - [Script](scripts/day2-import-explore.R)
 - [Solutions](scripts/solutions/day2-solutions.R)
 
 ### Day 3: Data Wrangling
-- [Slides](slides/day3-data-wrangling.pdf)
+- [Slides](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/slides/day3-data-wrangling.html) | [Source](slides/day3-data-wrangling.qmd)
 - [Script](scripts/day3-wrangling.R)
 - [Solutions](scripts/solutions/day3-solutions.R)
 
 ### Day 4: Visualization
-- [Slides](slides/day4-visualization.pdf)
+- [Slides](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/slides/day4-visualization.html) | [Source](slides/day4-visualization.qmd)
 - [Script](scripts/day4-visualization.R)
 - [Solutions](scripts/solutions/day4-solutions.R)
 
 ### Day 5: Text Analysis & Capstone
-- [Slides](slides/day5-text-analysis-capstone.pdf)
+- [Slides](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/slides/day5-text-analysis.html) | [Source](slides/day5-text-analysis.qmd)
 - [Script](scripts/day5-text-analysis.R)
 - [Solutions](scripts/solutions/day5-solutions.R)
 
