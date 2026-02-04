@@ -1,0 +1,45 @@
+# R
+.Rhistory
+.Rdata
+.RData
+.Ruserdata
+.Rproj.user/
+
+# RStudio
+*.Rproj
+
+# Output files (students generate these locally)
+output/*.png
+output/*.pdf
+output/*.csv
+output/*.svg
+!output/.gitkeep
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Environment files (API keys, credentials)
+.Renviron
+.env
+
+# Cache
+__pycache__/
+*.pyc
+
+# Compressed files (keep the original data)
+*.zip
+
+# Log files
+*.log
