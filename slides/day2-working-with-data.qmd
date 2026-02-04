@@ -1,0 +1,681 @@
+---
+title: "Data Analysis with R and Claude Code"
+subtitle: "Day 2: Working with Data — Import, Explore, Transform"
+author: "Fabio Giglietto"
+institute: "University of Urbino"
+date: "February 10, 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    preview-links: auto
+    logo: ""
+    footer: "PhD in Humanities — Scienze della Comunicazione e Cultura Digitale"
+    highlight-style: github
+    code-line-numbers: false
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Welcome Back! {background-color="#2c3e50"}
+
+## Day 1 Recap
+
+::: {.incremental}
+- R as a calculator
+- Variables and assignment (`<-`)
+- Vectors: `c()`, `length()`, `mean()`, `sum()`
+- Logical operations: `>`, `<`, `==`
+- Getting help: `?function`
+:::
+
+## Today's Goals
+
+::: {.incremental}
+1. Understand data structures (vectors, data frames, tibbles)
+2. Import our TikTok dataset
+3. Explore data with useful functions
+4. Select columns with `select()`
+5. Filter rows with `filter()`
+6. Chain operations with the pipe `|>`
+:::
+
+## Did You Install tidyverse?
+
+```{r}
+library(tidyverse)
+```
+
+. . .
+
+If you see an error, run:
+
+```{r}
+install.packages("tidyverse")
+```
+
+# Data Structures {background-color="#2c3e50"}
+
+## Vectors (Review)
+
+One-dimensional, single data type
+
+```{r}
+authors <- c("user1", "user2", "user3")
+views <- c(1000, 5000, 2500)
+```
+
+. . .
+
+Access elements:
+
+```{r}
+authors[1]
+views[2:3]
+```
+
+## Data Frames
+
+Two-dimensional: **rows** and **columns**
+
+- Rows = observations (videos)
+- Columns = variables (view_count, likes, etc.)
+
+. . .
+
+Think of it like a **spreadsheet**
+
+## Creating a Data Frame
+
+```{r}
+example_df <- data.frame(
+  author = c("user1", "user2", "user3"),
+  views = c(1000, 5000, 2500),
+  likes = c(100, 800, 300)
+)
+
+example_df
+```
+
+```
+  author views likes
+1  user1  1000   100
+2  user2  5000   800
+3  user3  2500   300
+```
+
+## Tibbles: Modern Data Frames
+
+Part of tidyverse — better printing, stricter behavior
+
+```{r}
+example_tibble <- tibble(
+  author = c("user1", "user2", "user3"),
+  views = c(1000, 5000, 2500),
+  likes = c(100, 800, 300)
+)
+
+example_tibble
+```
+
+```
+# A tibble: 3 × 3
+  author views likes
+  <chr>  <dbl> <dbl>
+1 user1   1000   100
+2 user2   5000   800
+3 user3   2500   300
+```
+
+## Data Frame vs Tibble
+
+| Feature | Data Frame | Tibble |
+|---------|------------|--------|
+| Printing | Shows all rows | Shows first 10 |
+| Column types | Hidden | Displayed |
+| Partial matching | Yes | No (safer) |
+| From tidyverse | No | Yes |
+
+. . .
+
+**We'll use tibbles** (created automatically by `read_csv()`)
+
+# Importing Data {background-color="#2c3e50"}
+
+## The read_csv() Function
+
+```{r}
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+```
+
+. . .
+
+What happens:
+
+1. Reads the CSV file
+2. Guesses column types
+3. Returns a tibble
+4. Shows you what it found
+
+## Try It: Import the Dataset
+
+```{r}
+library(tidyverse)
+
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+```
+
+. . .
+
+You should see output describing:
+
+- Number of rows and columns
+- Column names and types
+
+## Our Dataset
+
+**9,373 TikTok videos** about Fabrizio Corona
+
+| Column | Description |
+|--------|-------------|
+| `video_id` | Unique identifier |
+| `create_date` | Date posted |
+| `description` | Video caption |
+| `duration` | Length in seconds |
+| `view_count` | Number of views |
+| `like_count` | Number of likes |
+| `author_name` | Creator username |
+
+# Exploring Data {background-color="#2c3e50"}
+
+## Dimensions
+
+How big is our data?
+
+```{r}
+nrow(corona)    # Number of rows (videos)
+ncol(corona)    # Number of columns (variables)
+dim(corona)     # Both at once
+```
+
+```
+[1] 9373
+[1] 14
+[1] 9373   14
+```
+
+## glimpse(): Compact Overview
+
+```{r}
+glimpse(corona)
+```
+
+```
+Rows: 9,373
+Columns: 14
+$ video_id      <chr> "7449234...", "7449876..."
+$ create_time   <dbl> 1735689600, 1735776000
+$ create_date   <date> 2026-01-01, 2026-01-02
+$ description   <chr> "Breaking news about...", ...
+$ view_count    <dbl> 15234, 89432, 234521, ...
+$ like_count    <dbl> 1523, 8943, 23452, ...
+...
+```
+
+## summary(): Statistics
+
+```{r}
+summary(corona)
+```
+
+Shows for each column:
+
+- **Numeric:** min, max, mean, median, quartiles
+- **Character:** length, class
+- **Date:** range
+
+## Looking at the Data
+
+```{r}
+head(corona)        # First 6 rows
+head(corona, 10)    # First 10 rows
+tail(corona)        # Last 6 rows
+```
+
+. . .
+
+Open in spreadsheet viewer:
+
+```{r}
+View(corona)    # Capital V!
+```
+
+## Column Names
+
+```{r}
+names(corona)
+```
+
+```
+ [1] "video_id"      "create_time"   "create_datetime"
+ [4] "create_date"   "description"   "hashtags"
+ [7] "duration"      "view_count"    "like_count"
+[10] "comment_count" "share_count"   "author_name"
+[13] "music_id"      "region_code"
+```
+
+## Accessing a Single Column
+
+Use the `$` operator:
+
+```{r}
+corona$view_count
+corona$author_name
+```
+
+. . .
+
+Returns a vector!
+
+```{r}
+mean(corona$view_count)
+max(corona$like_count)
+```
+
+## Unique Values
+
+```{r}
+unique(corona$region_code)   # What values exist?
+```
+
+```
+[1] "IT"
+```
+
+. . .
+
+```{r}
+n_distinct(corona$author_name)   # How many unique?
+```
+
+```
+[1] 4964
+```
+
+## Try It: Explore!
+
+Answer these questions:
+
+1. How many rows and columns?
+2. What columns are in the data?
+3. How many unique dates in `create_date`?
+4. What's the maximum `view_count`?
+
+# The Pipe Operator {background-color="#2c3e50"}
+
+## Introducing |>
+
+The pipe passes the result to the next function
+
+```{r}
+# Without pipe
+head(corona)
+
+# With pipe
+corona |> head()
+```
+
+. . .
+
+Read `|>` as **"and then"**
+
+## Why Use the Pipe?
+
+Makes code more readable:
+
+```{r}
+# Nested (hard to read)
+head(filter(select(corona, author_name, view_count), view_count > 100000))
+
+# Piped (easy to read)
+corona |>
+  select(author_name, view_count) |>
+  filter(view_count > 100000) |>
+  head()
+```
+
+## The Pipe Pattern
+
+```{r}
+data |>
+  do_something() |>
+  do_another_thing() |>
+  do_more()
+```
+
+. . .
+
+**Keyboard shortcut:** `Ctrl+Shift+M` (Windows/Linux) or `Cmd+Shift+M` (Mac)
+
+# Selecting Columns {background-color="#2c3e50"}
+
+## select(): Choose Columns
+
+```{r}
+corona |> select(video_id, author_name, view_count)
+```
+
+```
+# A tibble: 9,373 × 3
+  video_id         author_name    view_count
+  <chr>            <chr>               <dbl>
+1 7449234567891234 creator_abc         15234
+2 7449876543219876 news_italy          89432
+3 7450123456789012 gossip_italia      234521
+...
+```
+
+## Select a Range
+
+```{r}
+corona |> select(video_id:duration)
+```
+
+Selects all columns from `video_id` to `duration`
+
+## Remove Columns
+
+Use `-` to exclude:
+
+```{r}
+corona |> select(-music_id, -region_code)
+```
+
+. . .
+
+Keeps everything except `music_id` and `region_code`
+
+## Select by Pattern
+
+```{r}
+# Columns ending with "_count"
+corona |> select(ends_with("_count"))
+
+# Columns starting with "create"
+corona |> select(starts_with("create"))
+
+# Columns containing "count"
+corona |> select(contains("count"))
+```
+
+## Select Helpers Summary
+
+| Helper | Matches |
+|--------|---------|
+| `ends_with("x")` | Columns ending with "x" |
+| `starts_with("x")` | Columns starting with "x" |
+| `contains("x")` | Columns containing "x" |
+| `everything()` | All remaining columns |
+
+## Try It: select()
+
+Select only the engagement columns:
+
+- `like_count`
+- `comment_count`
+- `share_count`
+
+. . .
+
+```{r}
+corona |> select(like_count, comment_count, share_count)
+
+# Or using helper:
+corona |> select(ends_with("_count"), -view_count)
+```
+
+# Filtering Rows {background-color="#2c3e50"}
+
+## filter(): Choose Rows
+
+Keep rows where a condition is TRUE
+
+```{r}
+# Videos with more than 1 million views
+corona |> filter(view_count > 1000000)
+```
+
+## Comparison Operators
+
+| Operator | Meaning |
+|----------|---------|
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal |
+| `<=` | Less than or equal |
+
+## filter() Examples
+
+```{r}
+# Videos from a specific date
+corona |> filter(create_date == "2026-01-15")
+
+# Videos shorter than 30 seconds
+corona |> filter(duration < 30)
+
+# Videos longer than 60 seconds
+corona |> filter(duration > 60)
+```
+
+## Combining Conditions: AND
+
+Both conditions must be true
+
+```{r}
+# Use & or comma
+corona |> filter(view_count > 100000 & duration < 60)
+
+corona |> filter(view_count > 100000, duration < 60)
+```
+
+## Combining Conditions: OR
+
+At least one condition must be true
+
+```{r}
+# Use |
+corona |> filter(view_count > 1000000 | like_count > 100000)
+```
+
+## Multiple Values: %in%
+
+Check if value is one of several options:
+
+```{r}
+corona |> filter(create_date %in% c("2026-01-01",
+                                     "2026-01-02",
+                                     "2026-01-03"))
+```
+
+## Counting Results
+
+How many rows match your filter?
+
+```{r}
+corona |> filter(view_count > 1000000) |> nrow()
+```
+
+```
+[1] 42
+```
+
+## Try It: filter()
+
+Find videos with:
+
+- More than 10,000 likes **AND**
+- More than 100 comments
+
+How many are there?
+
+. . .
+
+```{r}
+corona |>
+  filter(like_count > 10000, comment_count > 100) |>
+  nrow()
+```
+
+# Combining Operations {background-color="#2c3e50"}
+
+## select() + filter()
+
+```{r}
+corona |>
+  filter(view_count > 500000) |>
+  select(author_name, description, view_count, like_count)
+```
+
+. . .
+
+**Read as:** Take `corona`, **then** filter to high-view videos, **then** select key columns
+
+## Example: First Week of January
+
+```{r}
+corona |>
+  filter(create_date >= "2026-01-01",
+         create_date <= "2026-01-07") |>
+  select(video_id, create_date, ends_with("_count"))
+```
+
+## The Power of Chaining
+
+```{r}
+corona |>
+  filter(view_count > 100000) |>
+  filter(duration < 60) |>
+  select(author_name, view_count, duration) |>
+  head(10)
+```
+
+Each step transforms the data for the next step
+
+# Exercises {background-color="#2c3e50"}
+
+## Exercise 1
+
+How many rows and columns does the dataset have?
+
+. . .
+
+```{r}
+nrow(corona)
+ncol(corona)
+# or
+dim(corona)
+```
+
+## Exercise 2
+
+How many unique authors are in the dataset?
+
+. . .
+
+```{r}
+n_distinct(corona$author_name)
+```
+
+## Exercise 3
+
+Filter videos with more than 500,000 views.
+
+How many videos meet this criterion?
+
+. . .
+
+```{r}
+corona |>
+  filter(view_count > 500000) |>
+  nrow()
+```
+
+## Exercise 4
+
+Find videos from January 15, 2026.
+
+Select only: `author_name`, `description`, `view_count`
+
+. . .
+
+```{r}
+corona |>
+  filter(create_date == "2026-01-15") |>
+  select(author_name, description, view_count)
+```
+
+## Challenge Exercise
+
+Use Claude Code to help you find the video with the most views.
+
+- What is the `author_name`?
+- How many views does it have?
+
+. . .
+
+Ask Claude:
+
+> "How do I find the row with the maximum view_count in a tibble?"
+
+# Key Takeaways {background-color="#2c3e50"}
+
+## Today We Learned
+
+::: {.incremental}
+1. **`read_csv()`** imports CSV files into tibbles
+2. **`glimpse()`, `summary()`, `head()`** explore data
+3. **`select()`** chooses columns
+4. **`filter()`** chooses rows based on conditions
+5. **The pipe `|>`** chains operations together
+:::
+
+## The dplyr Verbs
+
+| Verb | Action |
+|------|--------|
+| `select()` | Choose **columns** |
+| `filter()` | Choose **rows** |
+| *Coming tomorrow...* | |
+| `mutate()` | Create new columns |
+| `summarize()` | Calculate summaries |
+| `group_by()` | Group data |
+| `arrange()` | Sort rows |
+
+# Homework {background-color="#2c3e50"}
+
+## Before Day 3
+
+**Practice with the dataset:**
+
+1. Find all videos with more than 50,000 likes
+2. Find all videos shorter than 15 seconds
+3. Combine: short videos (< 30 sec) with lots of likes (> 10,000)
+
+. . .
+
+**Ask Claude Code:**
+
+> "What's the difference between `select()` and `filter()` in dplyr?"
+
+# See You Tomorrow! {background-color="#2c3e50"}
+
+**Day 3: Data Wrangling**
+
+- Create new variables with `mutate()`
+- Categorize data with `case_when()`
+- Summarize data with `summarize()`
+- Group operations with `group_by()`
