@@ -1,0 +1,31 @@
+title: Data Analysis with R and Claude Code
+description: From Zero to Hero for Media & Communication Researchers
+baseurl: "/r-data-analysis-uniurb-2026"
+url: ""
+
+# Theme
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# Site settings
+author: Fabio Giglietto
+email: fabio.giglietto@uniurb.it
+institution: University of Urbino
+
+# Course info
+course:
+  program: "PhD in Humanities — Scienze della Comunicazione e Cultura Digitale"
+  dates: "February 9-13, 2026"
+  duration: "10 hours (5 sessions × 2 hours)"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Navigation
+header_pages:
+  - index.md
+  - materials.md
+  - setup.md
+  - claude-code.md
