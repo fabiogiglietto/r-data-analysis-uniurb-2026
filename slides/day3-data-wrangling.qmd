@@ -1,0 +1,684 @@
+---
+title: "Data Analysis with R and Claude Code"
+subtitle: "Day 3: Data Wrangling — Transforming Data for Analysis"
+author: "Fabio Giglietto"
+institute: "University of Urbino"
+date: "February 11, 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    preview-links: auto
+    logo: ""
+    footer: "PhD in Humanities — Scienze della Comunicazione e Cultura Digitale"
+    highlight-style: github
+    code-line-numbers: false
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Welcome Back! {background-color="#2c3e50"}
+
+## Day 2 Recap
+
+::: {.incremental}
+- Data structures: vectors, data frames, tibbles
+- `read_csv()` imports CSV files
+- `glimpse()`, `summary()`, `head()` explore data
+- `select()` chooses columns
+- `filter()` chooses rows
+- The pipe `|>` chains operations
+:::
+
+## Today's Goals
+
+::: {.incremental}
+1. Create new variables with `mutate()`
+2. Categorize data with `case_when()`
+3. Summarize data with `summarize()`
+4. Group operations with `group_by()`
+5. Count with `count()`
+6. Sort with `arrange()`
+:::
+
+## Setup
+
+```{r}
+library(tidyverse)
+
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+
+glimpse(corona)
+```
+
+# Creating Variables {background-color="#2c3e50"}
+
+## mutate(): Create New Columns
+
+```{r}
+corona <- corona |>
+  mutate(engagement_total = like_count + comment_count + share_count)
+```
+
+. . .
+
+Check it worked:
+
+```{r}
+corona |> select(video_id, like_count, comment_count,
+                 share_count, engagement_total)
+```
+
+## Multiple Variables at Once
+
+```{r}
+corona <- corona |>
+  mutate(
+    views_thousands = view_count / 1000,
+    views_millions = view_count / 1000000,
+    like_ratio = like_count / view_count
+  )
+```
+
+## Engagement Rate
+
+A key metric: engagement per view
+
+```{r}
+corona <- corona |>
+  mutate(engagement_rate = engagement_total / view_count)
+```
+
+. . .
+
+Now we can compare videos fairly regardless of view count!
+
+## Try It: mutate()
+
+Create a variable called `comment_ratio`:
+
+$$\text{comment\_ratio} = \frac{\text{comment\_count}}{\text{view\_count}}$$
+
+. . .
+
+```{r}
+corona <- corona |>
+  mutate(comment_ratio = comment_count / view_count)
+```
+
+# Categorizing Data {background-color="#2c3e50"}
+
+## case_when(): Create Categories
+
+```{r}
+corona <- corona |>
+  mutate(
+    duration_category = case_when(
+      duration < 30 ~ "short",
+      duration >= 30 & duration <= 60 ~ "medium",
+      duration > 60 ~ "long"
+    )
+  )
+```
+
+## case_when() Syntax
+
+```{r}
+case_when(
+  condition1 ~ "result1",
+  condition2 ~ "result2",
+  condition3 ~ "result3"
+)
+```
+
+. . .
+
+- Conditions are tested **in order**
+- First TRUE condition wins
+- Use `TRUE ~ "default"` for a catch-all
+
+## Check the Results
+
+```{r}
+corona |> count(duration_category)
+```
+
+```
+# A tibble: 3 × 2
+  duration_category     n
+  <chr>             <int>
+1 long               1842
+2 medium             3156
+3 short              4375
+```
+
+## Creating a Viral Flag
+
+Simple TRUE/FALSE variable:
+
+```{r}
+corona <- corona |>
+  mutate(is_viral = view_count > 1000000)
+
+corona |> count(is_viral)
+```
+
+```
+# A tibble: 2 × 2
+  is_viral     n
+  <lgl>    <int>
+1 FALSE     9331
+2 TRUE        42
+```
+
+## Popularity Categories
+
+Multiple tiers:
+
+```{r}
+corona <- corona |>
+  mutate(
+    popularity = case_when(
+      view_count < 10000 ~ "low",
+      view_count < 100000 ~ "medium",
+      view_count < 1000000 ~ "high",
+      view_count >= 1000000 ~ "viral"
+    )
+  )
+```
+
+## Check Popularity Distribution
+
+```{r}
+corona |> count(popularity)
+```
+
+```
+# A tibble: 4 × 2
+  popularity     n
+  <chr>      <int>
+1 high        1256
+2 low         5843
+3 medium      2232
+4 viral         42
+```
+
+## Try It: case_when()
+
+Create an `engagement_level` variable:
+
+- "low" if `engagement_rate < 0.01`
+- "medium" if `engagement_rate >= 0.01` and `< 0.05`
+- "high" if `engagement_rate >= 0.05`
+
+. . .
+
+```{r}
+corona <- corona |>
+  mutate(
+    engagement_level = case_when(
+      engagement_rate < 0.01 ~ "low",
+      engagement_rate < 0.05 ~ "medium",
+      engagement_rate >= 0.05 ~ "high"
+    )
+  )
+```
+
+# The Pipe Deep Dive {background-color="#2c3e50"}
+
+## Without the Pipe
+
+Nested functions (hard to read!):
+
+```{r}
+head(filter(select(corona, author_name, view_count),
+            view_count > 100000), 10)
+```
+
+. . .
+
+You read from inside out: select → filter → head
+
+## With the Pipe
+
+Step by step (easy to read!):
+
+```{r}
+corona |>
+  select(author_name, view_count) |>
+  filter(view_count > 100000) |>
+  head(10)
+```
+
+. . .
+
+You read top to bottom: select → filter → head
+
+## Building Complex Transformations
+
+```{r}
+corona |>
+  filter(view_count > 50000) |>
+  mutate(eng_per_1k = engagement_total / (view_count / 1000)) |>
+  select(author_name, view_count, eng_per_1k) |>
+  arrange(desc(eng_per_1k)) |>
+  head(10)
+```
+
+# Summarizing Data {background-color="#2c3e50"}
+
+## summarize(): Calculate Statistics
+
+Collapses many rows into one summary:
+
+```{r}
+corona |>
+  summarize(
+    total_videos = n(),
+    total_views = sum(view_count),
+    avg_views = mean(view_count)
+  )
+```
+
+```
+# A tibble: 1 × 3
+  total_videos total_views avg_views
+         <int>       <dbl>     <dbl>
+1         9373   338738386    36142.
+```
+
+## Summary Functions
+
+| Function | Description |
+|----------|-------------|
+| `n()` | Count rows |
+| `sum()` | Total |
+| `mean()` | Average |
+| `median()` | Middle value |
+| `sd()` | Standard deviation |
+| `min()` | Minimum |
+| `max()` | Maximum |
+| `n_distinct()` | Count unique |
+
+## Comprehensive Summary
+
+```{r}
+corona |>
+  summarize(
+    total_videos = n(),
+    total_views = sum(view_count),
+    total_likes = sum(like_count),
+    avg_views = mean(view_count),
+    median_views = median(view_count),
+    max_views = max(view_count),
+    unique_authors = n_distinct(author_name)
+  )
+```
+
+## Handling Missing Values
+
+Some functions fail with `NA` values:
+
+```{r}
+corona |>
+  summarize(
+    avg_engagement = mean(engagement_rate, na.rm = TRUE)
+  )
+```
+
+. . .
+
+`na.rm = TRUE` removes NA values before calculating
+
+# Grouping Data {background-color="#2c3e50"}
+
+## group_by() + summarize()
+
+The power combo: statistics **by group**
+
+```{r}
+corona |>
+  group_by(create_date) |>
+  summarize(
+    n_videos = n(),
+    total_views = sum(view_count),
+    avg_views = mean(view_count)
+  )
+```
+
+## Daily Statistics
+
+```{r}
+daily_stats <- corona |>
+  group_by(create_date) |>
+  summarize(
+    n_videos = n(),
+    total_views = sum(view_count),
+    avg_views = mean(view_count),
+    avg_likes = mean(like_count)
+  )
+
+daily_stats
+```
+
+## Statistics by Category
+
+```{r}
+corona |>
+  group_by(duration_category) |>
+  summarize(
+    n_videos = n(),
+    avg_views = mean(view_count),
+    avg_engagement = mean(engagement_rate, na.rm = TRUE)
+  )
+```
+
+```
+# A tibble: 3 × 4
+  duration_category n_videos avg_views avg_engagement
+  <chr>                <int>     <dbl>          <dbl>
+1 long                  1842    42156.         0.0312
+2 medium                3156    38234.         0.0298
+3 short                 4375    31567.         0.0345
+```
+
+## Group by Multiple Variables
+
+```{r}
+corona |>
+  group_by(duration_category, is_viral) |>
+  summarize(
+    n_videos = n(),
+    avg_views = mean(view_count)
+  )
+```
+
+## Important: ungroup()
+
+If you continue working with grouped data, ungroup first:
+
+```{r}
+corona_with_daily <- corona |>
+  group_by(create_date) |>
+  mutate(daily_avg = mean(view_count)) |>
+  ungroup()
+```
+
+. . .
+
+Otherwise grouping persists and may cause unexpected behavior!
+
+# Counting {background-color="#2c3e50"}
+
+## count(): Quick Frequency Tables
+
+Shortcut for `group_by() + summarize(n = n())`:
+
+```{r}
+# Count videos by date
+corona |> count(create_date)
+
+# Count by duration category
+corona |> count(duration_category)
+```
+
+## count() with Sorting
+
+```{r}
+corona |> count(author_name, sort = TRUE)
+```
+
+```
+# A tibble: 4,964 × 2
+   author_name          n
+   <chr>            <int>
+ 1 corona_news         47
+ 2 gossip_italia       38
+ 3 breaking_italy      35
+...
+```
+
+## Count Multiple Variables
+
+```{r}
+corona |> count(duration_category, popularity)
+```
+
+Creates a cross-tabulation!
+
+## add_count(): Add Count to Data
+
+```{r}
+corona <- corona |>
+  add_count(author_name, name = "author_video_count")
+```
+
+. . .
+
+Now each row has a column showing how many videos that author posted
+
+# Sorting {background-color="#2c3e50"}
+
+## arrange(): Sort Rows
+
+```{r}
+# Ascending (smallest first) - default
+corona |>
+  select(author_name, view_count) |>
+  arrange(view_count)
+```
+
+## Descending Order
+
+```{r}
+# Descending (largest first)
+corona |>
+  select(author_name, view_count) |>
+  arrange(desc(view_count))
+```
+
+## Sort by Multiple Columns
+
+```{r}
+corona |>
+  select(create_date, author_name, view_count) |>
+  arrange(create_date, desc(view_count))
+```
+
+. . .
+
+Sorts by date first, then by views within each date
+
+## Top 10 Most Viewed
+
+```{r}
+corona |>
+  arrange(desc(view_count)) |>
+  head(10) |>
+  select(author_name, description, view_count, like_count)
+```
+
+## Top 10 Most Prolific Authors
+
+```{r}
+corona |>
+  count(author_name, sort = TRUE) |>
+  head(10)
+```
+
+# Putting It All Together {background-color="#2c3e50"}
+
+## Example: Most Engaging Days
+
+```{r}
+corona |>
+  group_by(create_date) |>
+  summarize(
+    n_videos = n(),
+    total_views = sum(view_count),
+    avg_engagement = mean(engagement_rate, na.rm = TRUE)
+  ) |>
+  arrange(desc(avg_engagement))
+```
+
+## Example: Top Authors by Total Views
+
+```{r}
+corona |>
+  group_by(author_name) |>
+  summarize(
+    n_videos = n(),
+    total_views = sum(view_count),
+    total_likes = sum(like_count)
+  ) |>
+  arrange(desc(total_views)) |>
+  head(10)
+```
+
+## Example: Duration vs Engagement
+
+Do longer videos get more engagement?
+
+```{r}
+corona |>
+  group_by(duration_category) |>
+  summarize(
+    n_videos = n(),
+    avg_views = mean(view_count),
+    avg_likes = mean(like_count),
+    avg_engagement = mean(engagement_rate, na.rm = TRUE)
+  )
+```
+
+# The dplyr Verbs Summary {background-color="#2c3e50"}
+
+## All Six Verbs
+
+| Verb | Action | Works on |
+|------|--------|----------|
+| `select()` | Choose columns | Columns |
+| `filter()` | Choose rows | Rows |
+| `mutate()` | Create/modify columns | Columns |
+| `summarize()` | Calculate statistics | Rows → 1 row |
+| `group_by()` | Group data | Groups |
+| `arrange()` | Sort rows | Rows |
+
+## The Workflow
+
+```{r}
+data |>
+  filter(...) |>      # subset rows
+  select(...) |>      # choose columns
+  mutate(...) |>      # create variables
+  group_by(...) |>    # define groups
+  summarize(...) |>   # calculate stats
+  arrange(...)        # sort results
+```
+
+# Exercises {background-color="#2c3e50"}
+
+## Exercise 1
+
+Create a `like_ratio` variable (like_count / view_count)
+
+. . .
+
+```{r}
+corona <- corona |>
+  mutate(like_ratio = like_count / view_count)
+```
+
+## Exercise 2
+
+How many videos are in each popularity category?
+
+. . .
+
+```{r}
+corona |> count(popularity)
+```
+
+## Exercise 3
+
+What is the average duration for each popularity category?
+
+. . .
+
+```{r}
+corona |>
+  group_by(popularity) |>
+  summarize(avg_duration = mean(duration))
+```
+
+## Exercise 4
+
+Who are the top 5 authors by total engagement?
+
+. . .
+
+```{r}
+corona |>
+  group_by(author_name) |>
+  summarize(total_engagement = sum(engagement_total)) |>
+  arrange(desc(total_engagement)) |>
+  head(5)
+```
+
+## Exercise 5
+
+Which date had the most videos posted?
+
+. . .
+
+```{r}
+corona |>
+  count(create_date, sort = TRUE) |>
+  head(1)
+```
+
+## Challenge
+
+Use Claude Code to find the day with the highest average views per video.
+
+> "How do I find which date has the highest mean view_count?"
+
+# Key Takeaways {background-color="#2c3e50"}
+
+## Today We Learned
+
+::: {.incremental}
+1. **`mutate()`** creates new columns
+2. **`case_when()`** creates categories
+3. **`summarize()`** calculates statistics
+4. **`group_by()`** + `summarize()` = stats by group
+5. **`count()`** is a shortcut for counting
+6. **`arrange()`** sorts rows
+:::
+
+# Homework {background-color="#2c3e50"}
+
+## Before Day 4
+
+**Practice these operations:**
+
+1. Create a `share_ratio` variable
+2. Categorize videos by `like_count` (low/medium/high)
+3. Find the average `share_count` by `popularity` category
+4. Find the top 10 days by total likes
+
+. . .
+
+**Ask Claude Code:**
+
+> "What's the difference between `summarize()` and `mutate()`?"
+
+# See You Tomorrow! {background-color="#2c3e50"}
+
+**Day 4: Data Visualization**
+
+- The grammar of graphics
+- Histograms, bar charts, line plots
+- Scatter plots and trend lines
+- Customizing your visualizations
