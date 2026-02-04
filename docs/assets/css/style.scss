@@ -1,0 +1,370 @@
+---
+---
+
+// ============================================
+// UNIVERSITÀ DEGLI STUDI DI URBINO CARLO BO
+// GitHub Pages Custom Theme
+// Based on Brand Manual 2024-2026
+// ============================================
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+// ============================================
+// UNIURB COLOR PALETTE
+// ============================================
+
+$uniurb-blue-dark: #294973;
+$uniurb-blue-medium: #49668C;
+$uniurb-blue-light: #7289A6;
+$uniurb-blue-pale: #A4B0BF;
+$uniurb-gray-light: #F2F2F2;
+
+$uniurb-gold-dark: #7A621D;
+$uniurb-gold-light: #FADB87;
+$uniurb-gold-primary: #FAC73C;
+$uniurb-gold-medium: #C79F30;
+
+// Override Cayman theme variables
+$header-bg-color: $uniurb-blue-dark;
+$header-bg-color-secondary: darken($uniurb-blue-dark, 8%);
+$header-heading-color: #fff;
+$header-link-color: rgba(255, 255, 255, 0.7);
+$body-text-color: $uniurb-blue-dark;
+$body-link-color: $uniurb-blue-medium;
+$section-headings-color: $uniurb-blue-dark;
+$blockquote-text-color: $uniurb-blue-medium;
+$code-bg-color: $uniurb-gray-light;
+$code-text-color: $uniurb-blue-dark;
+$border-color: $uniurb-blue-pale;
+
+// Import the Cayman theme
+@import "jekyll-theme-cayman";
+
+// ============================================
+// CUSTOM OVERRIDES
+// ============================================
+
+// Typography
+body {
+  font-family: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+// Header
+.page-header {
+  background: linear-gradient(135deg, $uniurb-blue-dark 0%, darken($uniurb-blue-dark, 10%) 100%);
+  padding: 3rem 4rem;
+
+  @media screen and (max-width: 42em) {
+    padding: 2rem 1rem;
+  }
+}
+
+.project-name {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+
+.project-tagline {
+  color: $uniurb-gold-primary;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  opacity: 1;
+}
+
+// Navigation buttons in header
+.btn {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $uniurb-blue-dark;
+    background-color: $uniurb-gold-primary;
+    border-color: $uniurb-gold-primary;
+  }
+}
+
+// Main content
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: $uniurb-blue-dark;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    border-bottom: 3px solid $uniurb-gold-primary;
+    padding-bottom: 0.3em;
+  }
+
+  h2 {
+    border-bottom: 2px solid $uniurb-gold-primary;
+    padding-bottom: 0.2em;
+    margin-top: 2em;
+  }
+
+  // Links
+  a {
+    color: $uniurb-blue-medium;
+    font-weight: 500;
+
+    &:hover {
+      color: $uniurb-gold-dark;
+      text-decoration: underline;
+    }
+  }
+
+  // Strong text
+  strong {
+    color: $uniurb-blue-dark;
+  }
+
+  // Horizontal rules
+  hr {
+    border-color: $uniurb-blue-pale;
+    margin: 2em 0;
+  }
+
+  // Tables
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+
+    th {
+      background-color: $uniurb-blue-dark;
+      color: white;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      padding: 0.8em 1em;
+      text-align: left;
+      border: none;
+    }
+
+    td {
+      padding: 0.7em 1em;
+      border-bottom: 1px solid $uniurb-blue-pale;
+      background-color: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background-color: rgba($uniurb-blue-pale, 0.2);
+    }
+
+    tr:hover td {
+      background-color: rgba($uniurb-gold-light, 0.3);
+    }
+
+    // Links in tables
+    a {
+      color: $uniurb-blue-medium;
+
+      &:hover {
+        color: $uniurb-gold-dark;
+      }
+    }
+  }
+
+  // Code blocks
+  pre {
+    background-color: #fafbfc;
+    border: 1px solid $uniurb-blue-pale;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 1em;
+  }
+
+  code {
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+    background-color: rgba($uniurb-blue-pale, 0.3);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  // Blockquotes
+  blockquote {
+    border-left: 5px solid $uniurb-gold-primary;
+    background-color: white;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0 8px 8px 0;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // Lists
+  ul, ol {
+    margin-left: 1em;
+
+    li {
+      margin-bottom: 0.5em;
+      line-height: 1.5;
+    }
+  }
+
+  ul li::marker {
+    color: $uniurb-gold-primary;
+  }
+
+  ol li::marker {
+    color: $uniurb-blue-medium;
+    font-weight: 600;
+  }
+}
+
+// Footer
+.site-footer {
+  border-top: 2px solid $uniurb-blue-pale;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+
+  .footer-content {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  p {
+    color: $uniurb-blue-medium;
+    margin: 0.5em 0;
+
+    strong {
+      color: $uniurb-blue-dark;
+    }
+  }
+
+  .site-footer-credits {
+    color: $uniurb-blue-light;
+    font-size: 0.9em;
+
+    a {
+      color: $uniurb-blue-medium;
+
+      &:hover {
+        color: $uniurb-gold-dark;
+      }
+    }
+  }
+}
+
+// ============================================
+// CUSTOM UTILITY CLASSES
+// ============================================
+
+// Highlight box
+.highlight-box {
+  background-color: white;
+  border: 2px solid $uniurb-gold-primary;
+  border-radius: 10px;
+  padding: 1.2em 1.5em;
+  margin: 1.5em 0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+// Blue box
+.blue-box {
+  background-color: $uniurb-blue-dark;
+  color: white;
+  border-radius: 10px;
+  padding: 1.2em 1.5em;
+  margin: 1.5em 0;
+
+  h3, h4 {
+    color: $uniurb-gold-primary;
+    margin-top: 0;
+  }
+
+  a {
+    color: $uniurb-gold-light;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================
+
+@media screen and (max-width: 64em) {
+  .main-content {
+    padding: 2rem 2rem;
+  }
+}
+
+@media screen and (max-width: 42em) {
+  .main-content {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    table {
+      font-size: 0.85rem;
+
+      th, td {
+        padding: 0.5em 0.6em;
+      }
+    }
+  }
+}
+
+// ============================================
+// ACCESSIBILITY
+// ============================================
+
+// Focus states
+a:focus,
+button:focus,
+input:focus,
+[tabindex]:focus {
+  outline: 3px solid $uniurb-gold-primary;
+  outline-offset: 2px;
+}
+
+// Skip link
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: $uniurb-blue-dark;
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+
+  &:focus {
+    top: 0;
+  }
+}
