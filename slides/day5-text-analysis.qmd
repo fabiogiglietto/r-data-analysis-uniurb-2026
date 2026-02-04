@@ -15,6 +15,7 @@ format:
     code-line-numbers: false
     code-overflow: wrap
     scrollable: true
+    margin: 0.05
 execute:
   echo: true
   eval: false
@@ -22,7 +23,7 @@ execute:
 
 # Welcome to Day 5! {background-color="#2c3e50"}
 
-## This Week's Journey
+## This Week's Journey {.smaller}
 
 | Day | Topic | ✓ |
 |-----|-------|---|
