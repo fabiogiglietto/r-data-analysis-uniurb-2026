@@ -49,13 +49,11 @@ Download [RStudio Desktop](https://posit.co/download/rstudio-desktop/) (free ver
 
 ### 3. Claude Code
 
-1. Install [Node.js](https://nodejs.org/) (version 18 or later)
-2. Open a terminal and run:
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
-3. **Guest Pass:** You will receive a free one-week guest pass by email from the instructor
-4. See [detailed setup instructions](resources/setup-instructions.md) for activation
+1. Open a terminal and run the installer:
+   - **macOS/Linux:** `curl -fsSL https://claude.ai/install.sh | bash`
+   - **Windows (PowerShell):** `irm https://claude.ai/install.ps1 | iex`
+2. **Guest Pass:** You will receive a free one-week guest pass by email from the instructor
+3. See [detailed setup instructions](resources/setup-instructions.md) for activation
 
 ### 4. R Packages
 

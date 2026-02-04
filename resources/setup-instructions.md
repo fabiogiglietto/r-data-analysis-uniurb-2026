@@ -73,56 +73,25 @@ library(tidyverse)
 
 You should see a message listing the packages loaded. If you see an error, try reinstalling.
 
-## 4. Install Node.js
-
-Node.js is required to run Claude Code.
-
-### Windows
-
-1. Go to [https://nodejs.org/](https://nodejs.org/)
-2. Download the **LTS** version (recommended)
-3. Run the installer
-4. Follow the wizard (default options are fine)
-5. Restart your computer
-
-### macOS
-
-**Option A: Direct download**
-1. Go to [https://nodejs.org/](https://nodejs.org/)
-2. Download the **LTS** version
-3. Run the `.pkg` installer
-
-**Option B: Using Homebrew**
-```bash
-brew install node
-```
-
-### Linux (Ubuntu/Debian)
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt install -y nodejs
-```
-
-### Verify Installation
-
-Open a terminal (or Command Prompt on Windows) and type:
-```bash
-node --version
-```
-
-You should see a version number like `v20.x.x`.
-
-## 5. Install Claude Code
+## 4. Install Claude Code
 
 Claude Code is an AI assistant that helps you write and understand R code.
 
-1. Open a terminal (or Command Prompt on Windows)
-2. Run:
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
-3. Wait for installation to complete
+### macOS / Linux
+
+Open a terminal and run:
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+### Windows
+
+Open PowerShell and run:
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+Alternatively, you can use Git Bash or WSL and run the macOS/Linux command above.
 
 ### Activate Your Guest Pass
 
@@ -141,7 +110,7 @@ claude
 
 You should see Claude Code start. Follow the prompts to sign in with your Anthropic account (the one you used to activate the guest pass).
 
-## 6. Download Course Materials
+## 5. Download Course Materials
 
 1. Go to the course GitHub repository
 2. Click the green **Code** button
@@ -159,22 +128,13 @@ install.packages("tidytext")
 install.packages("scales")
 ```
 
-### Permission errors installing npm packages
+### Claude Code installation fails
 
-**macOS/Linux:**
-```bash
-sudo npm install -g @anthropic-ai/claude-code
-```
-
-**Windows:** Run Command Prompt as Administrator.
+Try running the installer again. On Windows, make sure you're using PowerShell (not Command Prompt). On macOS/Linux, you may need to restart your terminal after installation.
 
 ### RStudio doesn't find R
 
 Make sure R is installed before RStudio. Try reinstalling R, then restart RStudio.
-
-### Node.js command not found
-
-Restart your terminal or computer after installing Node.js.
 
 ## Backup Option: Posit Cloud
 
