@@ -51,8 +51,8 @@ $selection-color: $uniurb-blue-dark;
 
 // Typography - Body
 $font-family-sans-serif: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
-$presentation-font-size-root: 40px;
-$presentation-line-height: 1.5;
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.4;
 
 // Typography - Headings
 $presentation-heading-font: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -81,7 +81,7 @@ $code-color: $uniurb-blue-dark;
 // Base slide styling
 .reveal .slides section {
   text-align: left;
-  padding: 40px 60px;
+  padding: 20px 50px;
 }
 
 // Title Slide
@@ -155,14 +155,15 @@ $code-color: $uniurb-blue-dark;
 // Standard content slides
 .reveal .slides section h2 {
   border-bottom: 3px solid $uniurb-gold-primary;
-  padding-bottom: 0.25em;
-  margin-bottom: 0.8em;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.5em;
+  margin-top: 0;
 }
 
 .reveal .slides section h3 {
   color: $uniurb-blue-medium;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  margin-top: 0.6em;
+  margin-bottom: 0.3em;
 }
 
 // ============================================
@@ -170,8 +171,8 @@ $code-color: $uniurb-blue-dark;
 // ============================================
 
 .reveal p {
-  margin-bottom: 0.8em;
-  line-height: 1.6;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
 }
 
 .reveal strong {
@@ -190,14 +191,14 @@ $code-color: $uniurb-blue-dark;
 .reveal ul,
 .reveal ol {
   margin-left: 0.8em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .reveal ul li,
 .reveal ol li {
-  margin-bottom: 0.6em;
-  line-height: 1.5;
-  padding-left: 0.3em;
+  margin-bottom: 0.35em;
+  line-height: 1.35;
+  padding-left: 0.2em;
 }
 
 .reveal ul li::marker {
@@ -226,8 +227,8 @@ $code-color: $uniurb-blue-dark;
 .reveal blockquote {
   border-left: 5px solid $uniurb-gold-primary;
   background-color: white;
-  padding: 1.2em 1.8em;
-  margin: 1.5em 0;
+  padding: 0.8em 1.2em;
+  margin: 0.8em 0;
   font-style: italic;
   box-shadow: 0 3px 15px rgba(0,0,0,0.08);
   border-radius: 0 8px 8px 0;
@@ -257,8 +258,8 @@ $code-color: $uniurb-blue-dark;
 .reveal table {
   border-collapse: collapse;
   width: 100%;
-  margin: 1em 0;
-  font-size: 0.85em;
+  margin: 0.5em 0;
+  font-size: 0.8em;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   border-radius: 8px;
   overflow: hidden;
@@ -267,14 +268,14 @@ $code-color: $uniurb-blue-dark;
 .reveal table th {
   background-color: $uniurb-blue-dark;
   color: white;
-  padding: 0.8em 1.2em;
+  padding: 0.5em 0.8em;
   text-align: left;
   font-family: $presentation-heading-font;
   font-weight: 600;
 }
 
 .reveal table td {
-  padding: 0.7em 1.2em;
+  padding: 0.4em 0.8em;
   border-bottom: 1px solid $uniurb-blue-pale;
   background-color: white;
 }
@@ -300,9 +301,9 @@ $code-color: $uniurb-blue-dark;
   border: 1px solid $uniurb-blue-pale;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  font-size: 0.7em;
-  padding: 1em;
-  margin: 1em 0;
+  font-size: 0.65em;
+  padding: 0.7em;
+  margin: 0.5em 0;
 }
 
 .reveal code {
@@ -516,8 +517,10 @@ $code-color: $uniurb-blue-dark;
 
 @media screen and (max-width: 1200px) {
   .reveal .slides section {
-    padding: 30px 40px;
+    padding: 15px 30px;
   }
-  
-  $presentation-font-size-root: 32px;
+
+  .reveal {
+    font-size: 28px;
+  }
 }
