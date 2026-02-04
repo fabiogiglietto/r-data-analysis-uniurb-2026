@@ -1,6 +1,8 @@
-# Data Analysis with R and Claude Code
+# INTRODUCTION TO DATA ANALYSIS FOR MEDIA STUDIES
 
-**From Zero to Hero for Media & Communication Researchers**
+**Data Analysis with R and Claude Code — From Zero to Hero**
+
+[Official Course Page](https://www.uniurb.it/insegnamenti-e-programmi/269498)
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Course Website](https://img.shields.io/badge/Course-Website-blue)](https://fabiogiglietto.github.io/r-data-analysis-uniurb-2026/)

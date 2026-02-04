@@ -4,9 +4,11 @@ title: Home
 nav_order: 1
 ---
 
-# Data Analysis with R and Claude Code
+# INTRODUCTION TO DATA ANALYSIS FOR MEDIA STUDIES
 
-**From Zero to Hero for Media & Communication Researchers**
+**Data Analysis with R and Claude Code — From Zero to Hero**
+
+[Official Course Page](https://www.uniurb.it/insegnamenti-e-programmi/269498)
 
 ---
 
