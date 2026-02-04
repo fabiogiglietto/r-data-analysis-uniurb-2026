@@ -101,7 +101,9 @@ Now we can compare videos fairly regardless of view count!
 
 Create a variable called `comment_ratio`:
 
-$$\text{comment\_ratio} = \frac{\text{comment\_count}}{\text{view\_count}}$$
+```
+comment_ratio = comment_count / view_count
+```
 
 . . .
 
