@@ -75,6 +75,33 @@ We'll analyze **9,373 TikTok videos** about Fabrizio Corona
 | Period | January 2026 |
 | Region | Italy |
 
+## How Was This Data Collected?
+
+Collected via the **TikTok Research API** using two search criteria:
+
+::: {.incremental}
+1. **Keyword**: videos with "Fabrizio Corona" in the description
+2. **Hashtag**: videos tagged with `#fabriziocorona`
+:::
+
+. . .
+
+Filtered by region (Italy) and date (January 2026). Duplicates removed.
+
+## A Note on Data Quality
+
+This is a **real-world dataset** — it's messy!
+
+::: {.incremental}
+- **False positives**: some videos may mention Corona without being truly "about" him (e.g., jokes, memes, unrelated content reusing the hashtag)
+- **Missing data**: not all videos have descriptions or hashtags
+- **Snapshot in time**: view/like counts were captured on Feb 4, 2026 and may have changed since
+:::
+
+. . .
+
+**This is normal.** Cleaning and understanding your data is part of the analysis process.
+
 ## Questions We Can Answer
 
 ::: {.incremental}
