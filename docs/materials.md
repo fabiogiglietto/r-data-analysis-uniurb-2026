@@ -12,7 +12,7 @@ nav_order: 2
 
 The easiest way to get all course materials:
 
-1. Go to the [GitHub repository](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026)
+1. Go to the [GitHub repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026)
 2. Click the green **Code** button
 3. Select **Download ZIP**
 4. Extract the ZIP file on your computer
@@ -23,11 +23,11 @@ The easiest way to get all course materials:
 
 | Day | Topic | Script | Solutions |
 |:---:|-------|--------|-----------|
-| 1 | Foundations | [day1-basics.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day1-basics.R) | — |
-| 2 | Working with Data | [day2-import-explore.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day2-import-explore.R) | [day2-solutions.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day2-solutions.R) |
-| 3 | Data Wrangling | [day3-wrangling.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day3-wrangling.R) | [day3-solutions.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day3-solutions.R) |
-| 4 | Visualization | [day4-visualization.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day4-visualization.R) | [day4-solutions.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day4-solutions.R) |
-| 5 | Text Analysis | [day5-text-analysis.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day5-text-analysis.R) | [day5-solutions.R](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day5-solutions.R) |
+| 1 | Foundations | [day1-basics.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day1-basics.R) | — |
+| 2 | Working with Data | [day2-import-explore.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day2-import-explore.R) | [day2-solutions.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day2-solutions.R) |
+| 3 | Data Wrangling | [day3-wrangling.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day3-wrangling.R) | [day3-solutions.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day3-solutions.R) |
+| 4 | Visualization | [day4-visualization.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day4-visualization.R) | [day4-solutions.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day4-solutions.R) |
+| 5 | Text Analysis | [day5-text-analysis.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/day5-text-analysis.R) | [day5-solutions.R](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/scripts/solutions/day5-solutions.R) |
 
 ---
 
@@ -35,8 +35,8 @@ The easiest way to get all course materials:
 
 | File | Description | Download |
 |------|-------------|----------|
-| `fabrizio_corona_tiktok_jan2026.csv` | TikTok dataset (9,373 videos) | [Download](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/data/fabrizio_corona_tiktok_jan2026.csv) |
-| `README.md` | Data dictionary | [View](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/data/README.md) |
+| `fabrizio_corona_tiktok_jan2026.csv` | TikTok dataset (9,373 videos) | [Download](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/data/fabrizio_corona_tiktok_jan2026.csv) |
+| `README.md` | Data dictionary | [View](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/data/README.md) |
 
 ### Dataset Columns
 
@@ -63,7 +63,7 @@ The easiest way to get all course materials:
 
 | File | Description | Download |
 |------|-------------|----------|
-| Italian Stopwords | Word list for text analysis | [Download](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/raw/main/resources/italian-stopwords.csv) |
+| Italian Stopwords | Word list for text analysis | [Download](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/raw/main/resources/italian-stopwords.csv) |
 | Setup Instructions | Installation guide | [View](setup.html) |
 | Claude Code Tips | AI assistant guide | [View](claude-code.html) |
 
