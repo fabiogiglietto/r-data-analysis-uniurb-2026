@@ -56,7 +56,7 @@ The course uses a dataset of **9,373 TikTok videos** about Fabrizio Corona poste
 | Total views | 338+ million |
 | Period | January 1-31, 2026 |
 
-See the [data dictionary](https://github.com/fabio-giglietto/r-data-analysis-uniurb-2026/blob/main/data/README.md) for variable descriptions.
+See the [data dictionary](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026/blob/main/data/README.md) for variable descriptions.
 
 ---
 
