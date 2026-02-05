@@ -132,6 +132,45 @@ Best insights often come from combining both
 - How do platforms shape communication?
 :::
 
+# Project Setup Check {background-color="#2c3e50"}
+
+## Did You Set Up Your Project?
+
+You should have:
+
+::: {.incremental}
+1. Downloaded the course ZIP from GitHub
+2. Extracted it to a folder (e.g., `Documents/r-course`)
+3. Created an RStudio Project (**File → New Project → Existing Directory**)
+:::
+
+. . .
+
+Check: **Project name in top-right corner** of RStudio
+
+## Your Project Structure {.smaller}
+
+In the **Files** pane (bottom right), you should see:
+
+```
+├── data/           ← Our TikTok dataset
+├── scripts/        ← R scripts for each day
+├── resources/      ← Stopwords, cheatsheets
+├── output/         ← Your saved plots
+└── slides/         ← Slide decks
+```
+
+. . .
+
+**Why this matters:** file paths like `"data/fabrizio_corona_tiktok_jan2026.csv"` will just work!
+
+## If You Haven't Set Up Yet
+
+1. Download: [course GitHub repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026) → **Code** → **Download ZIP**
+2. Extract the ZIP to a folder
+3. In RStudio: **File → New Project → Existing Directory**
+4. Browse to the extracted folder → **Create Project**
+
 # RStudio Orientation {background-color="#2c3e50"}
 
 ## The RStudio Interface

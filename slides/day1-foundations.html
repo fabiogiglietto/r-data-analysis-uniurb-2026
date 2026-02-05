@@ -561,6 +561,46 @@
 </div>
 </section></section>
 <section>
+<section id="project-setup-check" class="title-slide slide level1 center" data-background-color="#2c3e50">
+<h1>Project Setup Check</h1>
+
+</section>
+<section id="did-you-set-up-your-project" class="slide level2">
+<h2>Did You Set Up Your Project?</h2>
+<p>You should have:</p>
+<div>
+<ol type="1">
+<li class="fragment">Downloaded the course ZIP from GitHub</li>
+<li class="fragment">Extracted it to a folder (e.g., <code>Documents/r-course</code>)</li>
+<li class="fragment">Created an RStudio Project (<strong>File → New Project → Existing Directory</strong>)</li>
+</ol>
+</div>
+<div class="fragment">
+<p>Check: <strong>Project name in top-right corner</strong> of RStudio</p>
+</div>
+</section>
+<section id="your-project-structure" class="slide level2 smaller">
+<h2>Your Project Structure</h2>
+<p>In the <strong>Files</strong> pane (bottom right), you should see:</p>
+<pre><code>├── data/           ← Our TikTok dataset
+├── scripts/        ← R scripts for each day
+├── resources/      ← Stopwords, cheatsheets
+├── output/         ← Your saved plots
+└── slides/         ← Slide decks</code></pre>
+<div class="fragment">
+<p><strong>Why this matters:</strong> file paths like <code>"data/fabrizio_corona_tiktok_jan2026.csv"</code> will just work!</p>
+</div>
+</section>
+<section id="if-you-havent-set-up-yet" class="slide level2">
+<h2>If You Haven’t Set Up Yet</h2>
+<ol type="1">
+<li>Download: <a href="https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026">course GitHub repository</a> → <strong>Code</strong> → <strong>Download ZIP</strong></li>
+<li>Extract the ZIP to a folder</li>
+<li>In RStudio: <strong>File → New Project → Existing Directory</strong></li>
+<li>Browse to the extracted folder → <strong>Create Project</strong></li>
+</ol>
+</section></section>
+<section>
 <section id="rstudio-orientation" class="title-slide slide level1 center" data-background-color="#2c3e50">
 <h1>RStudio Orientation</h1>
 
@@ -612,7 +652,7 @@
 <h2>Try It: Your First Code</h2>
 <p>Open RStudio and type in the Console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Press Enter. You should see:</p>
@@ -627,12 +667,12 @@
 <section id="r-as-a-calculator" class="slide level2">
 <h2>R as a Calculator</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>        <span class="co"># Addition</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">3</span>       <span class="co"># Subtraction</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">4</span>        <span class="co"># Multiplication</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="sc">/</span> <span class="dv">5</span>       <span class="co"># Division</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">^</span><span class="dv">2</span>          <span class="co"># Exponentiation (3 squared)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)     <span class="co"># Square root</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>        <span class="co"># Addition</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">3</span>       <span class="co"># Subtraction</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">4</span>        <span class="co"># Multiplication</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="sc">/</span> <span class="dv">5</span>       <span class="co"># Division</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">^</span><span class="dv">2</span>          <span class="co"># Exponentiation (3 squared)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)     <span class="co"># Square root</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="try-it-yourself" class="slide level2">
@@ -651,28 +691,28 @@
 <h2>Variables: Storing Values</h2>
 <p>Use <code>&lt;-</code> to assign values to variables</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Now use them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="naming-variables" class="slide level2">
 <h2>Naming Variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_name <span class="ot">&lt;-</span> <span class="st">"Fabio"</span>        <span class="co"># Text (character)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="dv">30</span>              <span class="co"># Number (numeric)</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>is_student <span class="ot">&lt;-</span> <span class="cn">TRUE</span>        <span class="co"># Logical (TRUE/FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_name <span class="ot">&lt;-</span> <span class="st">"Fabio"</span>        <span class="co"># Text (character)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="dv">30</span>              <span class="co"># Number (numeric)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>is_student <span class="ot">&lt;-</span> <span class="cn">TRUE</span>        <span class="co"># Logical (TRUE/FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>View a variable by typing its name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1] "Fabio"</code></pre>
 </div>
@@ -680,15 +720,15 @@
 <section id="our-course-variables" class="slide level2">
 <h2>Our Course Variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>platform <span class="ot">&lt;-</span> <span class="st">"TikTok"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>subject <span class="ot">&lt;-</span> <span class="st">"Fabrizio Corona"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n_videos <span class="ot">&lt;-</span> <span class="dv">9373</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>total_views <span class="ot">&lt;-</span> <span class="dv">338738386</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>platform <span class="ot">&lt;-</span> <span class="st">"TikTok"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>subject <span class="ot">&lt;-</span> <span class="st">"Fabrizio Corona"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_videos <span class="ot">&lt;-</span> <span class="dv">9373</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>total_views <span class="ot">&lt;-</span> <span class="dv">338738386</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>What’s the average views per video?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>total_views <span class="sc">/</span> n_videos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>total_views <span class="sc">/</span> n_videos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -725,33 +765,33 @@
 <h2>Vectors: Collections of Values</h2>
 <p>Use <code>c()</code> to <strong>combine</strong> values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>views</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>views</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1]   1000   5000  25000 100000  50000</code></pre>
 </section>
 <section id="vectors-of-different-types" class="slide level2">
 <h2>Vectors of Different Types</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Character</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>platforms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TikTok"</span>, <span class="st">"Instagram"</span>, <span class="st">"YouTube"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>is_viral <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Character</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>platforms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TikTok"</span>, <span class="st">"Instagram"</span>, <span class="st">"YouTube"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>is_viral <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="accessing-vector-elements" class="slide level2">
 <h2>Accessing Vector Elements</h2>
 <p>Use square brackets <code>[ ]</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>views[<span class="dv">1</span>]       <span class="co"># First element</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>views[<span class="dv">3</span>]       <span class="co"># Third element</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>views[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]  <span class="co"># First AND third</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>views[<span class="dv">1</span>]       <span class="co"># First element</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>views[<span class="dv">3</span>]       <span class="co"># Third element</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>views[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]  <span class="co"># First AND third</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1] 1000
 [1] 25000
@@ -760,22 +800,22 @@
 <section id="useful-vector-functions" class="slide level2">
 <h2>Useful Vector Functions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(views)   <span class="co"># How many elements?</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(views)      <span class="co"># Total</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(views)     <span class="co"># Average</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(views)      <span class="co"># Maximum</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(views)      <span class="co"># Minimum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(views)   <span class="co"># How many elements?</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(views)      <span class="co"># Total</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(views)     <span class="co"># Average</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(views)      <span class="co"># Maximum</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(views)      <span class="co"># Minimum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sorting" class="slide level2">
 <h2>Sorting</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(views)                      <span class="co"># Ascending</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(views, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)   <span class="co"># Descending</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(views)                      <span class="co"># Ascending</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(views, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)   <span class="co"># Descending</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1]   1000   5000  25000  50000 100000
 [1] 100000  50000  25000   5000   1000</code></pre>
@@ -787,7 +827,7 @@
 </ol>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>likes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">800</span>, <span class="dv">350</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>likes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">800</span>, <span class="dv">350</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -797,8 +837,8 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(likes)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(likes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(likes)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(likes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -806,23 +846,23 @@
 <h2>Logical Operations</h2>
 <p>Comparisons return <code>TRUE</code> or <code>FALSE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span>    <span class="co"># Greater than</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">3</span>    <span class="co"># Less than</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span>   <span class="co"># Equal to (two equals signs!)</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">3</span>   <span class="co"># Not equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span>    <span class="co"># Greater than</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">3</span>    <span class="co"># Less than</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span>   <span class="co"># Equal to (two equals signs!)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">3</span>   <span class="co"># Not equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="applying-comparisons-to-vectors" class="slide level2">
 <h2>Applying Comparisons to Vectors</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>views <span class="sc">&gt;</span> <span class="dv">10000</span>   <span class="co"># Which are greater than 10000?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>views <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">100000</span>, <span class="dv">50000</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>views <span class="sc">&gt;</span> <span class="dv">10000</span>   <span class="co"># Which are greater than 10000?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1] FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(views <span class="sc">&gt;</span> <span class="dv">10000</span>)   <span class="co"># How many?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(views <span class="sc">&gt;</span> <span class="dv">10000</span>)   <span class="co"># How many?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>[1] 3</code></pre>
 </div>
@@ -831,9 +871,9 @@
 <h2>Getting Help</h2>
 <p>Use <code>?</code> before any function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>?sum</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>?sort</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>?sum</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>?sort</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>The Help pane shows:</p>
@@ -896,8 +936,8 @@
 <div class="fragment">
 <p>Claude will provide:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -966,7 +1006,7 @@
 <h2>Before Day 2</h2>
 <p><strong>1. Install the tidyverse package</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(This may take a few minutes)</p>
 <div class="fragment">

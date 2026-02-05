@@ -110,12 +110,45 @@ claude
 
 You should see Claude Code start. Follow the prompts to sign in with your Anthropic account (the one you used to activate the guest pass).
 
-## 5. Download Course Materials
+## 5. Download Course Materials & Set Up RStudio Project
+
+### Step A: Download the files
 
 1. Go to the course GitHub repository
 2. Click the green **Code** button
 3. Select **Download ZIP**
 4. Extract the ZIP to a folder you can easily find (e.g., `Documents/r-course`)
+
+### Step B: Create an RStudio Project
+
+An RStudio Project keeps all your files organized and sets the correct working directory automatically.
+
+1. Open **RStudio**
+2. Go to **File → New Project...**
+3. Select **Existing Directory**
+4. Click **Browse** and navigate to the folder where you extracted the ZIP (e.g., `Documents/r-course/r-data-analysis-uniurb-2026-main`)
+5. Click **Create Project**
+
+RStudio will restart and open your project. You should see the project name in the top-right corner of RStudio.
+
+### Step C: Verify the project structure
+
+In the **Files** pane (bottom right), you should see:
+
+```
+├── data/                   ← Dataset for exercises
+├── scripts/                ← R scripts for each day
+│   └── solutions/          ← Exercise solutions
+├── resources/              ← Cheatsheets and additional materials
+├── output/                 ← Where your plots will be saved
+└── slides/                 ← Daily slide decks
+```
+
+### Why use an RStudio Project?
+
+- File paths like `"data/fabrizio_corona_tiktok_jan2026.csv"` will **just work** — no need to set the working directory manually
+- The Terminal tab opens in the project folder — ready for Claude Code
+- You can reopen the project anytime from **File → Recent Projects**
 
 ## Troubleshooting
 
