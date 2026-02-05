@@ -318,6 +318,100 @@ Answer these questions:
 3. How many unique dates in `create_date`?
 4. What's the maximum `view_count`?
 
+# Data Cleaning Basics {background-color="#2c3e50"}
+
+## Real Data Is Messy
+
+Remember from Day 1: our dataset was collected via keyword and hashtag search.
+
+::: {.incremental}
+- Some values may be **missing** (NA)
+- There could be **duplicates**
+- Some videos may be **false positives**
+:::
+
+. . .
+
+**First step:** understand what needs cleaning
+
+## Checking for Missing Values
+
+```{r}
+# Count NAs in each column
+colSums(is.na(corona))
+```
+
+. . .
+
+```{r}
+# Which columns have missing values?
+corona |>
+  summarize(
+    missing_description = sum(is.na(description)),
+    missing_hashtags = sum(is.na(hashtags))
+  )
+```
+
+## What Is NA?
+
+`NA` means **"Not Available"** — the value is missing
+
+```{r}
+x <- c(10, NA, 30)
+mean(x)          # Returns NA!
+mean(x, na.rm = TRUE)  # Ignores NA → returns 20
+```
+
+. . .
+
+**`na.rm = TRUE`** is your friend for calculations with missing data
+
+## Checking for Duplicates
+
+```{r}
+# Are there duplicate video IDs?
+corona |>
+  count(video_id, sort = TRUE) |>
+  filter(n > 1)
+```
+
+. . .
+
+If duplicates exist, you can remove them:
+
+```{r}
+corona <- corona |> distinct(video_id, .keep_all = TRUE)
+```
+
+## Filtering Out Bad Data
+
+```{r}
+# Remove videos with no description (potential low quality)
+corona_clean <- corona |>
+  filter(!is.na(description))
+
+# Remove very short videos (< 1 second — likely errors)
+corona_clean <- corona_clean |>
+  filter(duration >= 1)
+```
+
+. . .
+
+**Tip:** always keep the original data and create a new variable for cleaned data
+
+## Cleaning Workflow
+
+```
+Import → Explore → Understand → Clean → Analyze
+```
+
+::: {.incremental}
+1. **Explore** the data first (glimpse, summary)
+2. **Identify** problems (NAs, duplicates, outliers)
+3. **Decide** what to keep and what to remove
+4. **Document** your choices — no "right" answer!
+:::
+
 # The Pipe Operator {background-color="#2c3e50"}
 
 ## Introducing |>
