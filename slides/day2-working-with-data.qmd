@@ -176,7 +176,7 @@ You should see output describing:
 - Number of rows and columns
 - Column names and types
 
-## Our Dataset
+## Our Dataset {.smaller}
 
 **9,373 TikTok videos** about Fabrizio Corona
 
@@ -185,9 +185,12 @@ You should see output describing:
 | `video_id` | Unique identifier |
 | `create_date` | Date posted |
 | `description` | Video caption |
+| `hashtags` | Comma-separated hashtags |
 | `duration` | Length in seconds |
 | `view_count` | Number of views |
 | `like_count` | Number of likes |
+| `comment_count` | Number of comments |
+| `share_count` | Number of shares |
 | `author_name` | Creator username |
 
 # Exploring Data {background-color="#2c3e50"}

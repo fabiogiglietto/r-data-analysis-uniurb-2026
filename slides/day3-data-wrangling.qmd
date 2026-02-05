@@ -585,13 +585,13 @@ data |>
 
 ## Exercise 1
 
-Create a `like_ratio` variable (like_count / view_count)
+Create a `share_ratio` variable (share_count / view_count)
 
 . . .
 
 ```{r}
 corona <- corona |>
-  mutate(like_ratio = like_count / view_count)
+  mutate(share_ratio = share_count / view_count)
 ```
 
 ## Exercise 2
