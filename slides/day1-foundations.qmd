@@ -576,13 +576,13 @@ Ask it: "What is the difference between `<-` and `=` in R?"
 
 ## Before Day 2
 
-**1. Install the tidyverse package**
+**1. Verify tidyverse is loaded**
 
 ```{r}
-install.packages("tidyverse")
+library(tidyverse)
 ```
 
-(This may take a few minutes)
+You should see a list of packages. If you get an error, run `install.packages("tidyverse")`.
 
 . . .
 
