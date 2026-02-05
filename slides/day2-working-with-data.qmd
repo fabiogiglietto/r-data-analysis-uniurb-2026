@@ -368,6 +368,8 @@ mean(x, na.rm = TRUE)  # Ignores NA → returns 20
 
 ## Checking for Duplicates
 
+Our dataset was already de-duplicated, but it's good practice to verify:
+
 ```{r}
 # Are there duplicate video IDs?
 corona |>
@@ -377,9 +379,10 @@ corona |>
 
 . . .
 
-If duplicates exist, you can remove them:
+**Note:** videos with the same description are OK — different creators can post similar content. Always de-duplicate by **unique identifier** (`video_id`), not by content.
 
 ```{r}
+# If needed:
 corona <- corona |> distinct(video_id, .keep_all = TRUE)
 ```
 
