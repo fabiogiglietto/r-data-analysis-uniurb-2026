@@ -399,6 +399,20 @@ corona_clean <- corona_clean |>
 
 **Tip:** always keep the original data and create a new variable for cleaned data
 
+## What About False Positives?
+
+The only way to **completely** eliminate false positives is to manually check every post.
+
+. . .
+
+This can be **partially automated** using an LLM (Large Language Model) in the loop to classify each post as relevant or not.
+
+. . .
+
+This falls outside the scope of this course, but it's important to keep in mind:
+
+**Your dataset may contain noise — and that's OK for learning.**
+
 ## Cleaning Workflow
 
 ```
