@@ -985,6 +985,106 @@ Limitations:
 </div>
 </section></section>
 <section>
+<section id="connecting-quantitative-qualitative" class="title-slide slide level1 center" data-background-color="#2c3e50">
+<h1>Connecting Quantitative &amp; Qualitative</h1>
+
+</section>
+<section id="numbers-tell-part-of-the-story" class="slide level2">
+<h2>Numbers Tell Part of the Story</h2>
+<p>This week we’ve done <strong>quantitative analysis</strong>: counting, measuring, visualizing patterns.</p>
+<div class="fragment">
+<p>But numbers alone can’t answer <strong>why</strong>.</p>
+<div>
+<ul>
+<li class="fragment"><em>Why</em> did certain videos go viral?</li>
+<li class="fragment"><em>What</em> is the tone of the content?</li>
+<li class="fragment"><em>How</em> do creators frame Fabrizio Corona?</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="the-mixed-methods-approach" class="slide level2">
+<h2>The Mixed Methods Approach</h2>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Quantitative</th>
+<th>Qualitative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Asks</strong></td>
+<td>How many? How much?</td>
+<td>Why? How? What does it mean?</td>
+</tr>
+<tr class="even">
+<td><strong>Tools</strong></td>
+<td>R, statistics, charts</td>
+<td>Close reading, coding, interviews</td>
+</tr>
+<tr class="odd">
+<td><strong>Strength</strong></td>
+<td>Scale, patterns</td>
+<td>Depth, context</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Best research combines both.</strong></p>
+</div>
+</section>
+<section id="from-numbers-to-meaning" class="slide level2">
+<h2>From Numbers to Meaning</h2>
+<p>Quantitative analysis can <strong>guide</strong> your qualitative work:</p>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Identify outliers</strong> → read the most viral videos closely</li>
+<li class="fragment"><strong>Find clusters</strong> → sample from each group for deeper analysis</li>
+<li class="fragment"><strong>Detect patterns</strong> → then explain <em>why</em> they exist</li>
+<li class="fragment"><strong>Flag anomalies</strong> → investigate unexpected spikes or drops</li>
+</ol>
+</div>
+</section>
+<section id="example-our-dataset" class="slide level2">
+<h2>Example: Our Dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Quantitative — find top 10 most viewed videos</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>top_videos <span class="ot">&lt;-</span> corona <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(view_count)) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(video_id, description, view_count)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Qualitative — read their descriptions</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># What themes do you notice? What makes them stand out?</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>top_videos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>This is where <strong>your expertise as a researcher</strong> matters most.</p>
+</div>
+</section>
+<section id="scaling-up-with-ai" class="slide level2">
+<h2>Scaling Up with AI</h2>
+<p>For large datasets, you can use <strong>LLMs to assist</strong> qualitative coding:</p>
+<div>
+<ul>
+<li class="fragment">Classify content by topic or sentiment</li>
+<li class="fragment">Flag false positives automatically</li>
+<li class="fragment">Summarize large volumes of text</li>
+<li class="fragment"><strong>But always validate</strong> AI classifications with human review</li>
+</ul>
+</div>
+<div class="fragment">
+<p>AI is a tool, not a replacement for critical thinking.</p>
+</div>
+</section></section>
+<section>
 <section id="resources-for-continuing" class="title-slide slide level1 center" data-background-color="#2c3e50">
 <h1>Resources for Continuing</h1>
 
