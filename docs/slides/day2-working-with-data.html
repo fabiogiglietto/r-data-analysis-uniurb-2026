@@ -801,15 +801,16 @@ $ like_count    &lt;dbl&gt; 1523, 8943, 23452, ...
 <section id="filtering-out-bad-data" class="slide level2">
 <h2>Filtering Out Bad Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove videos with no description (potential low quality)</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove videos with no description AND no hashtags</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>corona_clean <span class="ot">&lt;-</span> corona <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(description))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(description) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.na</span>(hashtags))</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove very short videos (&lt; 1 second — likely errors)</span></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>corona_clean <span class="ot">&lt;-</span> corona_clean <span class="sc">|&gt;</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(duration <span class="sc">&gt;=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
+<p><strong>Note:</strong> a missing description is fine if the video has hashtags — we still have useful text data.</p>
 <p><strong>Tip:</strong> always keep the original data and create a new variable for cleaned data</p>
 </div>
 </section>

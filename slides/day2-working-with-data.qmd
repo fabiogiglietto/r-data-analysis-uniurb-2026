@@ -389,9 +389,9 @@ corona <- corona |> distinct(video_id, .keep_all = TRUE)
 ## Filtering Out Bad Data
 
 ```{r}
-# Remove videos with no description (potential low quality)
+# Remove videos with no description AND no hashtags
 corona_clean <- corona |>
-  filter(!is.na(description))
+  filter(!is.na(description) | !is.na(hashtags))
 
 # Remove very short videos (< 1 second — likely errors)
 corona_clean <- corona_clean |>
@@ -399,6 +399,8 @@ corona_clean <- corona_clean |>
 ```
 
 . . .
+
+**Note:** a missing description is fine if the video has hashtags — we still have useful text data.
 
 **Tip:** always keep the original data and create a new variable for cleaned data
 
