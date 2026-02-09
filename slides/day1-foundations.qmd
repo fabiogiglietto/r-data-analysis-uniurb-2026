@@ -61,57 +61,6 @@ execute:
 | 4 | Visualization — Tell stories with data |
 | 5 | Text Analysis — Capstone project |
 
-## Our Dataset: TikTok Videos
-
-We'll analyze **9,373 TikTok videos** about Fabrizio Corona
-
-. . .
-
-| Attribute | Value |
-|-----------|-------|
-| Videos | 9,373 |
-| Unique creators | 4,964 |
-| Total views | 338+ million |
-| Period | January 2026 |
-| Region | Italy |
-
-## How Was This Data Collected?
-
-Collected via the **TikTok Research API** using two search criteria:
-
-::: {.incremental}
-1. **Keyword**: videos with "Fabrizio Corona" in the description
-2. **Hashtag**: videos tagged with `#fabriziocorona`
-:::
-
-. . .
-
-Filtered by region (Italy) and date (January 2026). Duplicates removed.
-
-## A Note on Data Quality
-
-This is a **real-world dataset** — it's messy!
-
-::: {.incremental}
-- **False positives**: some videos may mention Corona without being truly "about" him (e.g., jokes, memes, unrelated content reusing the hashtag)
-- **Missing data**: not all videos have descriptions or hashtags
-- **Snapshot in time**: view/like counts were captured on Feb 4, 2026 and may have changed since
-:::
-
-. . .
-
-**This is normal.** Cleaning and understanding your data is part of the analysis process.
-
-## Questions We Can Answer
-
-::: {.incremental}
-- Which videos went viral?
-- What makes content engaging?
-- When do creators post?
-- What hashtags are most popular?
-- Who are the top creators?
-:::
-
 # Why Data Analysis? {background-color="#2c3e50"}
 
 ## The Media Research Landscape
@@ -155,13 +104,56 @@ Best insights often come from combining both
 - How do stories spread on social media?
 - What content gets engagement?
 - How do audiences respond to events?
-- What are the patterns in large text collections?
-- How do platforms shape communication?
+- Who are the key voices in a conversation?
+- What patterns exist in large text collections?
 :::
 
-# Project Setup Check {background-color="#2c3e50"}
+# Our Dataset {background-color="#2c3e50"}
 
-## Did You Set Up Your Project?
+## TikTok Videos about Fabrizio Corona
+
+We'll analyze **9,373 TikTok videos** collected in January 2026
+
+. . .
+
+| Attribute | Value |
+|-----------|-------|
+| Videos | 9,373 |
+| Unique creators | 4,964 |
+| Total views | 338+ million |
+| Period | January 2026 |
+| Region | Italy |
+
+## How Was This Data Collected?
+
+Collected via the **TikTok Research API** using two search criteria:
+
+::: {.incremental}
+1. **Keyword**: videos with "Fabrizio Corona" in the description
+2. **Hashtag**: videos tagged with `#fabriziocorona`
+:::
+
+. . .
+
+Filtered by region (Italy) and date (January 2026). Duplicates removed.
+
+## A Note on Data Quality
+
+This is a **real-world dataset** — it's messy!
+
+::: {.incremental}
+- **False positives**: some videos may mention Corona without being truly "about" him
+- **Missing data**: not all videos have descriptions or hashtags
+- **Snapshot in time**: engagement counts were captured on Feb 4, 2026
+:::
+
+. . .
+
+**This is normal.** Cleaning and understanding data is part of the process.
+
+# Getting Started {background-color="#2c3e50"}
+
+## Project Setup Check
 
 You should have:
 
@@ -174,6 +166,13 @@ You should have:
 . . .
 
 Check: **Project name in top-right corner** of RStudio
+
+## If You Need to Catch Up
+
+1. Download: [course GitHub repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026) → **Code** → **Download ZIP**
+2. Extract the ZIP to a folder
+3. In RStudio: **File → New Project → Existing Directory**
+4. Browse to the extracted folder → **Create Project**
 
 ## Your Project Structure {.smaller}
 
@@ -190,41 +189,6 @@ In the **Files** pane (bottom right), you should see:
 . . .
 
 **Why this matters:** file paths like `"data/fabrizio_corona_tiktok_jan2026.csv"` will just work!
-
-## Using the Daily Scripts
-
-Each day has a script in the `scripts/` folder:
-
-- `day1-basics.R`, `day2-import-explore.R`, etc.
-
-. . .
-
-**How to use them:**
-
-1. Open today's script: **File → Open File → scripts/day1-basics.R**
-2. Follow along as we go through the slides
-3. Run code with `Ctrl+Enter` (or `Cmd+Enter` on Mac)
-4. Complete the exercises marked `# [YOUR CODE HERE]`
-
-## Script Tips
-
-::: {.incremental}
-- **Don't just copy-paste** — type the code yourself to learn
-- **Experiment!** — change values, break things, see what happens
-- **Read the comments** — they explain what each section does
-- **Save your work** — add your own notes and solutions
-:::
-
-. . .
-
-The scripts are your **workbook** for this course!
-
-## If You Haven't Set Up Yet
-
-1. Download: [course GitHub repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026) → **Code** → **Download ZIP**
-2. Extract the ZIP to a folder
-3. In RStudio: **File → New Project → Existing Directory**
-4. Browse to the extracted folder → **Create Project**
 
 # RStudio Orientation {background-color="#2c3e50"}
 
@@ -271,13 +235,30 @@ The scripts are your **workbook** for this course!
 
 . . .
 
-**Key shortcut:** `Ctrl+Enter` (or `Cmd+Enter` on Mac)
+**Key shortcut:** `Ctrl+Enter` (or `Cmd+Enter` on Mac) — runs the current line
 
-Runs the current line or selection
+## Using the Daily Scripts
+
+Open today's script: **File → Open File → scripts/day1-basics.R**
+
+. . .
+
+**How to follow along:**
+
+::: {.incremental}
+- The script mirrors these slides — follow along section by section
+- Run each line with `Ctrl+Enter` (`Cmd+Enter` on Mac)
+- Complete exercises marked `# [YOUR CODE HERE]`
+- Add your own notes and experiments
+:::
+
+. . .
+
+The scripts are your **workbook** for this course!
 
 ## Try It: Your First Code
 
-Open RStudio and type in the Console:
+Type in the Console:
 
 ```{r}
 2 + 2
@@ -351,23 +332,6 @@ my_name
 
 ```
 [1] "Fabio"
-```
-
-## Our Course Variables
-
-```{r}
-platform <- "TikTok"
-subject <- "Fabrizio Corona"
-n_videos <- 9373
-total_views <- 338738386
-```
-
-. . .
-
-What's the average views per video?
-
-```{r}
-total_views / n_videos
 ```
 
 ## Data Types
@@ -448,27 +412,6 @@ sort(views, decreasing = TRUE)   # Descending
 [1] 100000  50000  25000   5000   1000
 ```
 
-## Try It: Vector Exercise
-
-1. Create a vector called `likes` with values: 100, 500, 2000, 800, 350
-
-. . .
-
-```{r}
-likes <- c(100, 500, 2000, 800, 350)
-```
-
-. . .
-
-2. Calculate the mean and sum
-
-. . .
-
-```{r}
-mean(likes)
-sum(likes)
-```
-
 ## Logical Operations
 
 Comparisons return `TRUE` or `FALSE`:
@@ -534,7 +477,7 @@ An AI assistant that helps you:
 - **Learn** programming concepts
 :::
 
-## Starting Claude Code in RStudio
+## Starting Claude Code
 
 1. Click the **Terminal** tab (next to Console)
 2. Type `claude` and press Enter
@@ -557,21 +500,6 @@ Claude will explain:
 
 - `c()` combines values into a vector
 - `<-` assigns the vector to a variable called `views`
-
-## Example: Write Code
-
-Ask Claude Code:
-
-> "Write R code to calculate the average of these numbers: 10, 20, 30, 40, 50"
-
-. . .
-
-Claude will provide:
-
-```{r}
-numbers <- c(10, 20, 30, 40, 50)
-mean(numbers)
-```
 
 ## Example: Debug Errors
 
@@ -614,11 +542,11 @@ Create variables for:
 
 Create a vector called `likes` with values: 100, 500, 2000, 800, 350
 
-Then:
+Then calculate:
 
-1. Calculate the mean
-2. Calculate the sum
-3. Find the maximum value
+1. The mean
+2. The sum
+3. The maximum value
 4. How many values are above 500?
 
 ## Exercise 3
@@ -643,11 +571,7 @@ You should see a list of packages. If you get an error, run `install.packages("t
 
 **2. Practice in RStudio**
 
-Create a new script with:
-
-- At least 3 variables
-- A numeric vector with 5+ values
-- Calculations using vector functions
+Complete the exercises in `scripts/day1-basics.R` if you haven't already.
 
 ## Ask Claude Code
 
