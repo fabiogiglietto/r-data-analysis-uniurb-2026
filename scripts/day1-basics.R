@@ -182,9 +182,9 @@ help.search("average")
 # HOMEWORK
 # -----------------------------------------------------------------------------
 
-# 1. Run this command to install the tidyverse package:
-#    install.packages("tidyverse")
-#    (This may take a few minutes)
+# 1. Verify tidyverse is loaded by running:
+#    library(tidyverse)
+#    If you get an error, first run: install.packages("tidyverse")
 
 # 2. Create a new R script and practice:
 #    - Create at least 3 variables

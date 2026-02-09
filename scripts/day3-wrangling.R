@@ -304,7 +304,7 @@ corona |>
 # EXERCISES
 # -----------------------------------------------------------------------------
 
-# Exercise 1: Create a new variable 'like_ratio' (like_count / view_count)
+# Exercise 1: Create a new variable 'share_ratio' (share_count / view_count)
 # [YOUR CODE HERE]
 
 

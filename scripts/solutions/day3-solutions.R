@@ -13,12 +13,12 @@ corona <- corona |>
     engagement_rate = engagement_total / view_count
   )
 
-# Exercise 1: Create like_ratio variable
+# Exercise 1: Create share_ratio variable
 corona <- corona |>
-  mutate(like_ratio = like_count / view_count)
+  mutate(share_ratio = share_count / view_count)
 
 # Verify
-corona |> select(video_id, like_count, view_count, like_ratio) |> head()
+corona |> select(video_id, share_count, view_count, share_ratio) |> head()
 
 # Exercise 2: Create popularity category
 corona <- corona |>

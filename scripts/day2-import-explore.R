@@ -105,7 +105,57 @@ n_distinct(corona$video_id)        # How many unique videos?
 
 
 # -----------------------------------------------------------------------------
-# SECTION 5: Introduction to dplyr — select()
+# SECTION 5: Data Cleaning Basics
+# -----------------------------------------------------------------------------
+
+# Real data is messy! Let's check for common issues.
+
+# CHECKING FOR MISSING VALUES (NA)
+# Count NAs in each column
+colSums(is.na(corona))
+
+# Which columns have missing values?
+corona |>
+  summarize(
+    missing_description = sum(is.na(description)),
+    missing_hashtags = sum(is.na(hashtags))
+  )
+
+# NA means "Not Available" - the value is missing
+# Many functions fail with NA unless you handle it:
+x <- c(10, NA, 30)
+mean(x)                  # Returns NA!
+mean(x, na.rm = TRUE)    # Ignores NA → returns 20
+
+# CHECKING FOR DUPLICATES
+# Our dataset was already de-duplicated, but good practice to verify:
+corona |>
+  count(video_id, sort = TRUE) |>
+  filter(n > 1)
+
+# Note: videos with same description are OK - different creators can post
+# similar content. Always de-duplicate by unique identifier (video_id)
+
+# If needed, you could remove duplicates with:
+# corona <- corona |> distinct(video_id, .keep_all = TRUE)
+
+# FILTERING OUT BAD DATA
+# Remove videos with no description AND no hashtags
+corona_clean <- corona |>
+  filter(!is.na(description) | !is.na(hashtags))
+
+# Remove very short videos (< 1 second - likely errors)
+corona_clean <- corona_clean |>
+  filter(duration >= 1)
+
+# Note: The only way to completely eliminate false positives is manual review
+# or using an LLM to classify relevance - beyond this course's scope
+
+# Tip: Always keep original data and create a new variable for cleaned data
+
+
+# -----------------------------------------------------------------------------
+# SECTION 6: Introduction to dplyr — select()
 # -----------------------------------------------------------------------------
 
 # dplyr is part of tidyverse and provides verbs for data manipulation
@@ -133,7 +183,7 @@ corona |> select(author_name, view_count, everything())
 
 
 # -----------------------------------------------------------------------------
-# SECTION 6: Introduction to dplyr — filter()
+# SECTION 7: Introduction to dplyr — filter()
 # -----------------------------------------------------------------------------
 
 # filter() chooses ROWS based on conditions
@@ -181,7 +231,7 @@ corona |> filter(view_count > 1000000) |> nrow()
 
 
 # -----------------------------------------------------------------------------
-# SECTION 7: Combining select() and filter()
+# SECTION 8: Combining select() and filter()
 # -----------------------------------------------------------------------------
 
 # The pipe |> allows us to chain operations
