@@ -191,6 +191,34 @@ In the **Files** pane (bottom right), you should see:
 
 **Why this matters:** file paths like `"data/fabrizio_corona_tiktok_jan2026.csv"` will just work!
 
+## Using the Daily Scripts
+
+Each day has a script in the `scripts/` folder:
+
+- `day1-basics.R`, `day2-import-explore.R`, etc.
+
+. . .
+
+**How to use them:**
+
+1. Open today's script: **File → Open File → scripts/day1-basics.R**
+2. Follow along as we go through the slides
+3. Run code with `Ctrl+Enter` (or `Cmd+Enter` on Mac)
+4. Complete the exercises marked `# [YOUR CODE HERE]`
+
+## Script Tips
+
+::: {.incremental}
+- **Don't just copy-paste** — type the code yourself to learn
+- **Experiment!** — change values, break things, see what happens
+- **Read the comments** — they explain what each section does
+- **Save your work** — add your own notes and solutions
+:::
+
+. . .
+
+The scripts are your **workbook** for this course!
+
 ## If You Haven't Set Up Yet
 
 1. Download: [course GitHub repository](https://github.com/fabiogiglietto/r-data-analysis-uniurb-2026) → **Code** → **Download ZIP**
