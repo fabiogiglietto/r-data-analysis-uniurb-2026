@@ -7,7 +7,9 @@ library(tidyverse)
 library(tidytext)
 library(scales)
 
-corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv",
+                   col_types = cols(video_id = col_character(),
+                                    music_id = col_character()))
 
 # Prepare data
 corona <- corona |>

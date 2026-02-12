@@ -15,7 +15,9 @@ library(tidytext)
 library(scales)
 
 # Import and prepare the data
-corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv",
+                   col_types = cols(video_id = col_character(),
+                                    music_id = col_character()))
 
 # Add calculated variables
 corona <- corona |>

@@ -54,7 +54,9 @@ example_tibble
 # Or use the full file path
 
 # Import the CSV file
-corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv")
+corona <- read_csv("data/fabrizio_corona_tiktok_jan2026.csv",
+                   col_types = cols(video_id = col_character(),
+                                    music_id = col_character()))
 
 # Note: read_csv() is from tidyverse and creates a tibble
 # It also shows you what data types it detected for each column
@@ -102,6 +104,15 @@ n_distinct(corona$video_id)        # How many unique videos?
 # - What are the column names?
 # - How many unique dates are in create_date?
 # [YOUR CODE HERE]
+nrow(corona)
+ncol(corona)
+dim(corona)
+
+names(corona)
+
+n_distinct(corona$create_date)
+
+max(corona$view_count)
 
 
 # -----------------------------------------------------------------------------
@@ -180,7 +191,11 @@ corona |> select(author_name, view_count, everything())
 
 # Exercise: Select only the engagement columns (like_count, comment_count, share_count)
 # [YOUR CODE HERE]
+corona |> select(like_count, comment_count, share_count)
 
+corona |>
+  select(ends_with("_count")) |>
+  select(-view_count)
 
 # -----------------------------------------------------------------------------
 # SECTION 7: Introduction to dplyr — filter()
@@ -229,6 +244,7 @@ corona |> filter(create_date %in% c("2026-01-01", "2026-01-02", "2026-01-03"))
 # Count results
 corona |> filter(view_count > 1000000) |> nrow()
 
+corona |> filter(like_count > 10000 & comment_count > 100) |> nrow()
 
 # -----------------------------------------------------------------------------
 # SECTION 8: Combining select() and filter()
