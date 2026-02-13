@@ -555,6 +555,44 @@ top_videos
 
 This is where **your expertise as a researcher** matters most.
 
+## Building Video URLs
+
+Platform URLs often follow **predictable patterns**:
+
+`https://www.tiktok.com/@{author_name}/video/{video_id}`
+
+. . .
+
+We can construct them with `mutate()` + `paste0()`:
+
+```{r}
+corona <- corona |>
+  mutate(video_url = paste0(
+    "https://www.tiktok.com/@", author_name,
+    "/video/", video_id
+  ))
+```
+
+Now every row has a clickable link to the actual video!
+
+## From Patterns to Posts
+
+```{r}
+# Quantitative filter → URL → qualitative analysis
+corona |>
+  arrange(desc(view_count)) |>
+  head(5) |>
+  select(author_name, description, view_count, video_url)
+```
+
+. . .
+
+**The workflow:** filter interesting videos with R → visit them for close reading
+
+. . .
+
+What can you learn from the **full multimodal post** (video, audio, comments) that you can't from metadata alone?
+
 ## Scaling Up with AI
 
 For large datasets, you can use **LLMs to assist** qualitative coding:

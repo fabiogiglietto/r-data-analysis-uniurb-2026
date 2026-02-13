@@ -202,7 +202,49 @@ hashtag_performance |>
 
 
 # -----------------------------------------------------------------------------
-# SECTION 4: Reproducible Workflows
+# SECTION 4: From Data to Context — Building Video URLs
+# -----------------------------------------------------------------------------
+
+# So far we've identified interesting videos using numbers:
+# top views, top engagement, specific hashtags...
+# But to actually WATCH those videos, we need their URLs!
+
+# TikTok URLs follow a predictable pattern:
+# https://www.tiktok.com/@{author_name}/video/{video_id}
+
+# We can construct URLs using paste0() — it pastes strings together
+# with no separator (paste0 = "paste with zero separator")
+
+# Example: building a single URL
+paste0("https://www.tiktok.com/@", "exampleuser", "/video/", "7449234567891234")
+
+# Let's add a video_url column to our entire dataset
+corona <- corona |>
+  mutate(video_url = paste0("https://www.tiktok.com/@", author_name, "/video/", video_id))
+
+# Check the result
+corona |>
+  select(author_name, video_id, video_url) |>
+  head(5)
+
+# Now we can combine quantitative filtering with qualitative exploration!
+# Find the top 5 most viewed videos AND get their URLs
+corona |>
+  arrange(desc(view_count)) |>
+  head(5) |>
+  select(author_name, description, view_count, video_url)
+
+# Copy any URL into your browser to watch the actual video
+# This is the bridge between quantitative patterns and qualitative understanding
+
+# Exercise 3: Find the 5 most commented videos that mention "processo"
+# (or another topic of your choice) in their description, and show their URLs.
+# Hint: use filter() with str_detect(), then arrange(), head(), and select()
+# [YOUR CODE HERE]
+
+
+# -----------------------------------------------------------------------------
+# SECTION 5: Reproducible Workflows
 # -----------------------------------------------------------------------------
 
 # BEST PRACTICES FOR ORGANIZING YOUR ANALYSIS
@@ -249,7 +291,7 @@ hashtag_performance |>
 
 
 # -----------------------------------------------------------------------------
-# SECTION 5: CAPSTONE PROJECT
+# SECTION 6: CAPSTONE PROJECT
 # -----------------------------------------------------------------------------
 
 # Choose ONE of the following research questions and complete a full analysis.

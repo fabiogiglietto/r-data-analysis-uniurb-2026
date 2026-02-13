@@ -27,6 +27,22 @@ corona <- corona |>
   )
 
 # =============================================================================
+# EXERCISE 3: Most commented videos about "processo" with URLs
+# =============================================================================
+
+# Add video URLs to the dataset
+corona <- corona |>
+  mutate(video_url = paste0("https://www.tiktok.com/@", author_name, "/video/", video_id))
+
+# Find the 5 most commented videos mentioning "processo"
+corona |>
+  filter(str_detect(str_to_lower(description), "processo")) |>
+  arrange(desc(comment_count)) |>
+  head(5) |>
+  select(author_name, description, comment_count, video_url)
+
+
+# =============================================================================
 # CAPSTONE OPTION A: ENGAGEMENT ANALYSIS
 # =============================================================================
 
